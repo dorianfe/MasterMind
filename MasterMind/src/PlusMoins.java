@@ -52,13 +52,13 @@ public class PlusMoins {
             proposition[i] = reste;
             i = i - 1;
             x = x / 10;
-
         }
         System.out.println(Arrays.toString(proposition));
 
     }
 
     public void verifCombi() {
+
         for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] < proposition[i]) {
                 System.out.println("-");
@@ -71,6 +71,7 @@ public class PlusMoins {
         while (combinaison != proposition) { // cette condition ne vérifie pas si les 2 tableaux sont tjrs différents et ne s'arrête donc pas
             proposition();
             verifCombi();
+
         }
 
     }
