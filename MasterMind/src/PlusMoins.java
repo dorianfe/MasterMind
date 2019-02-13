@@ -1,4 +1,3 @@
-import java.lang.invoke.SwitchPoint;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -47,11 +46,11 @@ public class PlusMoins {
         System.out.println("Faites une propostion de 4 chiffres : ");
         int x = sc.nextInt();
         proposition = new int[4];
-        int j = 3;
+        int i = 3;
         while (x != 0) {
             int reste = x % 10;
-            proposition[j] = reste;
-            j = j - 1;
+            proposition[i] = reste;
+            i = i - 1;
             x = x / 10;
 
         }
@@ -61,17 +60,20 @@ public class PlusMoins {
 
     public void verifCombi() {
         for (int i = 0; i < combinaison.length; i++) {
-            for (int j = 0; j < proposition.length; j++) {
-                if (combinaison[i] < proposition[j]) {
-                    System.out.println("-");
-                } else if (combinaison[i] == proposition[j]) {
-                    System.out.println("=");
-                } else {
-                    System.out.println("+");
-                }
-
+            if (combinaison[i] < proposition[i]) {
+                System.out.println("-");
+            } else if (combinaison[i] == proposition[i]) {
+                System.out.println("=");
+            } else {
+                System.out.println("+");
             }
+        }
+        while (combinaison != proposition) { // cette condition ne vérifie pas si les 2 tableaux sont tjrs différents et ne s'arrête donc pas
+            proposition();
+            verifCombi();
         }
 
     }
+
 }
+
