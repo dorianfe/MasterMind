@@ -4,9 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PlusMoins plusMoins = new PlusMoins();
+        PlusMoins plusMoins = new PlusMoinsChallenger();
         plusMoins.init();
-        plusMoins.proposition();
         plusMoins.verifCombi();
 
 

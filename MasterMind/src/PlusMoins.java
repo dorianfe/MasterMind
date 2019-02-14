@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class PlusMoins {
+public abstract class PlusMoins {
     int[] combinaison;
     Scanner sc = new Scanner(System.in);
     private String String;
@@ -9,17 +9,7 @@ public class PlusMoins {
 
 
     public void init() {
-        System.out.println("Entrez une combinaison de 4 chiffres : ");
-        int x = sc.nextInt();
-        combinaison = new int[4];
-        int i = 3;
-        while (x != 0) {
-            int reste = x % 10;
-            combinaison[i] = reste;
-            i = i - 1;
-            x = x / 10;
-
-        }
+        combinaison = convertir(demanderDefenseur());
         System.out.println(Arrays.toString(combinaison));
 
     }
@@ -43,38 +33,30 @@ public class PlusMoins {
     }
 
     public void proposition() {
-        System.out.println("Faites une propostion de 4 chiffres : ");
-        int x = sc.nextInt();
-        proposition = new int[4];
-        int i = 3;
-        while (x != 0) {
-            int reste = x % 10;
-            proposition[i] = reste;
-            i = i - 1;
-            x = x / 10;
-        }
+        proposition = convertir(demanderAttaquant());
         System.out.println(Arrays.toString(proposition));
-
     }
 
     public void verifCombi() {
-
-        for (int i = 0; i < combinaison.length; i++) {
-            if (combinaison[i] < proposition[i]) {
-                System.out.println("-");
-            } else if (combinaison[i] == proposition[i]) {
-                System.out.println("=");
-            } else {
-                System.out.println("+");
-            }
-        }
-        while (combinaison != proposition) { // cette condition ne vérifie pas si les 2 tableaux sont tjrs différents et ne s'arrête donc pas
+        do {
             proposition();
-            verifCombi();
-
+            for (int i = 0; i < combinaison.length; i++) {
+                if (combinaison[i] < proposition[i]) {
+                    System.out.print("-");
+                } else if (combinaison[i] == proposition[i]) {
+                    System.out.print("=");
+                } else {
+                    System.out.print("+");
+                }
+            }
+            System.out.println();
         }
-
+        while (!Arrays.equals(combinaison, proposition));
     }
 
-}
+    protected abstract int demanderAttaquant();
+    protected abstract int demanderDefenseur();
 
+
+}
+//3em methode abstraite, param indice envoyé par arbitre
