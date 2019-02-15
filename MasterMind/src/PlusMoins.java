@@ -38,6 +38,7 @@ public abstract class PlusMoins {
     }
 
     public String verifCombi() {
+        String retStr;
         do {
             proposition();
             for (int i = 0; i < combinaison.length; i++) {
@@ -50,6 +51,7 @@ public abstract class PlusMoins {
                 }
             }
             System.out.println();
+            retStr =
         }
         while (!Arrays.equals(combinaison, proposition));
     return "";

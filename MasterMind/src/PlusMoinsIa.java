@@ -8,7 +8,9 @@ public class PlusMoinsIa extends PlusMoins {
             int i;
             for (i = 0; i < 3; i++) {
                 verifCombi().charAt(i);
-                switch
+                switch () {
+
+                }
 
             }
         }
