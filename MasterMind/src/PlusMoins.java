@@ -2,10 +2,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public abstract class PlusMoins {
-    int[] combinaison;
+    private int[] combinaison;
     Scanner sc = new Scanner(System.in);
-    private String String;
-    int[] proposition;
+    private int[] proposition;
+    protected int[] retVal;
 
 
     public void init() {
@@ -14,8 +14,7 @@ public abstract class PlusMoins {
 
     }
 
-    private int[] convertir(int nb) {
-        int[] retVal = new int[4];
+    public int[] convertir(int nb) {
         int i = 3;
         while (nb != 0) {
             int reste = nb % 10;
@@ -38,7 +37,6 @@ public abstract class PlusMoins {
     }
 
     public String verifCombi() {
-        String retStr;
         do {
             proposition();
             for (int i = 0; i < combinaison.length; i++) {
@@ -51,15 +49,14 @@ public abstract class PlusMoins {
                 }
             }
             System.out.println();
-            retStr =
         }
         while (!Arrays.equals(combinaison, proposition));
-    return "";
+        return "";
     }
 
     protected abstract int demanderAttaquant();
-    protected abstract int demanderDefenseur();
 
+    protected abstract int demanderDefenseur();
 
 }
 //3em methode abstraite, param indice envoyé par arbitre

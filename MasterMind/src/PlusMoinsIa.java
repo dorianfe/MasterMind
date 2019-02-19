@@ -7,8 +7,14 @@ public class PlusMoinsIa extends PlusMoins {
         do {
             int i;
             for (i = 0; i < 3; i++) {
-                verifCombi().charAt(i);
-                switch () {
+                char indice = verifCombi().charAt(i);
+                switch (indice) {
+                    case '=':
+                       if (i == 0) {
+                           convertir((int)random);
+
+
+                       }
 
                 }
 
