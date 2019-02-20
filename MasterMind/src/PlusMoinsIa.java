@@ -25,7 +25,13 @@ public class PlusMoinsIa extends PlusMoins {
                             random = nvRand3 * 10 + randomInit % 10;
                         }
 
+
                     case '+':
+                        if (i == 0) {
+
+                        } else if (i==1) {
+
+                        }
 
 
                 }
