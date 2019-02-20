@@ -5,7 +5,6 @@ public abstract class PlusMoins {
     private int[] combinaison;
     Scanner sc = new Scanner(System.in);
     private int[] proposition;
-    protected int[] retVal;
 
 
     public void init() {
@@ -15,6 +14,7 @@ public abstract class PlusMoins {
     }
 
     public int[] convertir(int nb) {
+        int[] retVal = new int[4];
         int i = 3;
         while (nb != 0) {
             int reste = nb % 10;
