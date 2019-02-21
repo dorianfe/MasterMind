@@ -6,7 +6,7 @@ public class Main {
 
         PlusMoins plusMoins = new PlusMoinsChallenger();
         plusMoins.init();
-        plusMoins.verifCombi();
+        plusMoins.jouer();
 
 
 

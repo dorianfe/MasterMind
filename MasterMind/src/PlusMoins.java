@@ -26,9 +26,11 @@ public abstract class PlusMoins {
     }
 
     public void jouer() {
-        while (true) {
-            System.out.println("combinaison");
+        do {
+            proposition();
+            verifCombi();
         }
+        while (!Arrays.equals(combinaison, proposition));
     }
 
     public void proposition() {
@@ -37,22 +39,19 @@ public abstract class PlusMoins {
     }
 
     public String verifCombi() {
-        do {
-            proposition();
-            for (int i = 0; i < combinaison.length; i++) {
-                if (combinaison[i] < proposition[i]) {
-                    System.out.print("-");
-                } else if (combinaison[i] == proposition[i]) {
-                    System.out.print("=");
-                } else {
-                    System.out.print("+");
-                }
+        for (int i = 0; i < combinaison.length; i++) {
+            if (combinaison[i] < proposition[i]) {
+                System.out.print("-");
+            } else if (combinaison[i] == proposition[i]) {
+                System.out.print("=");
+            } else {
+                System.out.print("+");
             }
-            System.out.println();
         }
-        while (!Arrays.equals(combinaison, proposition));
+        System.out.println();
         return "";
     }
+
 
     protected abstract int demanderAttaquant();
 
