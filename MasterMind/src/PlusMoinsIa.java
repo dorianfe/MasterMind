@@ -1,12 +1,16 @@
 public class PlusMoinsIa extends PlusMoins {
 
+    private int[] derniereTentative = null;
+
+
     @Override
     protected int demanderAttaquant() {
-        int randomInit = (int) (Math.random() * 9000) + 1000; // prévoir un while ou autre pour ne faire proposition initiale qu'une seule fois
-        int random;
+        int random = (int) (Math.random() * 9999); // prévoir un while ou autre pour ne faire proposition initiale qu'une seule fois
+        derniereTentative = convertir(random);
         System.out.println("Je fais une proposition : ");
 
-        int i;
+
+        /*int i;
         for (i = 0; i < 4; i++) {
             char indice = verifCombi().charAt(i);
             switch (indice) {
@@ -36,9 +40,9 @@ public class PlusMoinsIa extends PlusMoins {
 
             }
 
-        }
+        }*/
 
-        return 0;
+        return randomInit;
     }
 
     @Override
