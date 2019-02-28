@@ -14,15 +14,16 @@ public class PlusMoinsIa extends PlusMoins {
             switch (indice) {
                 case '=':
                     derniereTentative[i] = derniereTentative[i];
-                    random = Integer.valueOf(derniereTentative[i]);
-
+                     random = convertir2(derniereTentative);
 
                     break;
                 case '+':
                     derniereTentative[i] = +1;
+                    random = convertir2(derniereTentative);
                     break;
                 case '-':
                     derniereTentative[i] = -1;
+                    random = convertir2(derniereTentative);
                     break;
             }
         }

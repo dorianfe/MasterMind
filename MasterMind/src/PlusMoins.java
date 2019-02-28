@@ -25,7 +25,21 @@ public abstract class PlusMoins {
         return retVal;
     }
 
+    public int convertir2(int[] thisIsAnArray) {
+        int[] thisIsAnIntArray = new int[4];
+        String delimiter = "";
+        StringBuilder sb = new StringBuilder();
+        for ( int element : thisIsAnIntArray ) {
+            if (sb.length() > 0) {
+                sb.append( delimiter );
+            }
+            sb.append( element );
+        }
+        String theString = sb.toString();
+        int result = Integer.parseInt(theString);
 
+        return result;
+    }
 
     public void jouer() {
         do {
