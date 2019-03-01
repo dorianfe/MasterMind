@@ -10,6 +10,7 @@ public class PlusMoinsIa extends PlusMoins {
         if (!alreadyExecuted) {
             random = (int) (Math.random() * 9999);
             alreadyExecuted = true;
+            return random;
         }
         do {
             derniereTentative = convertir(random);
@@ -20,18 +21,19 @@ public class PlusMoinsIa extends PlusMoins {
                 switch (indice) {
                     case '=':
                         derniereTentative[i] = derniereTentative[i];
-                        random = convertir2(derniereTentative);
+                        //random = convertir(derniereTentative);
                         break;
                     case '+':
-                        derniereTentative[i] = +1;
-                        random = convertir2(derniereTentative);
+                        derniereTentative[i] = derniereTentative[i]+1;
+                        //random = convertir(derniereTentative);
                         break;
                     case '-':
-                        derniereTentative[i] = -1;
-                        random = convertir2(derniereTentative);
+                        derniereTentative[i] = derniereTentative[i]-1;
+                        //random = convertir(derniereTentative);
                         break;
                 }
             }
+            random = convertir(derniereTentative);
             return random;
         } while (alreadyExecuted = true);
     }

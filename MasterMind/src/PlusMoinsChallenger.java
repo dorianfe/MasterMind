@@ -16,6 +16,4 @@ public class PlusMoinsChallenger extends PlusMoins {
         double random = Math.random() * 9999;
         return (int)random;
     }
-
-
 }

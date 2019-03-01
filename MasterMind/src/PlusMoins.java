@@ -25,11 +25,10 @@ public abstract class PlusMoins {
         return retVal;
     }
 
-    public int convertir2(int[] thisIsAnArray) {
-        int[] thisIsAnIntArray = new int[4];
+    public int convertir(int[] thisIsAnArray) {
         String delimiter = "";
         StringBuilder sb = new StringBuilder();
-        for ( int element : thisIsAnIntArray ) {
+        for ( int element : thisIsAnArray ) {
             if (sb.length() > 0) {
                 sb.append( delimiter );
             }
@@ -55,17 +54,18 @@ public abstract class PlusMoins {
     }
 
     public String verifCombi() {
+        String indice = "";
         for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] < proposition[i]) {
-                System.out.print("-");
+                indice = indice + "-";
             } else if (combinaison[i] == proposition[i]) {
-                System.out.print("=");
+                indice = indice + "=";
             } else {
-                System.out.print("+");
+                indice = indice + "+";;
             }
         }
-        System.out.println();
-        return "";
+        //System.out.println(indice);
+        return indice;
     }
 
 
