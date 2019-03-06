@@ -28,11 +28,11 @@ public abstract class PlusMoins {
     public int convertir(int[] thisIsAnArray) {
         String delimiter = "";
         StringBuilder sb = new StringBuilder();
-        for ( int element : thisIsAnArray ) {
+        for (int element : thisIsAnArray) {
             if (sb.length() > 0) {
-                sb.append( delimiter );
+                sb.append(delimiter);
             }
-            sb.append( element );
+            sb.append(element);
         }
         String theString = sb.toString();
         int result = Integer.parseInt(theString);
@@ -43,7 +43,8 @@ public abstract class PlusMoins {
     public void jouer() {
         do {
             proposition();
-            verifCombi();
+            verifCombiMaster();
+            //verifCombi();
         }
         while (!Arrays.equals(combinaison, proposition));
     }
@@ -61,17 +62,31 @@ public abstract class PlusMoins {
             } else if (combinaison[i] == proposition[i]) {
                 indice = indice + "=";
             } else {
-                indice = indice + "+";;
+                indice = indice + "+";
             }
         }
         //System.out.println(indice);
         return indice;
     }
 
+    public int verifCombiMaster() {
+        int present = 0;
+        for (int i = 0; i < combinaison.length; i++) {
+            for (int j = 0; j < proposition.length; j++) {
+                if (combinaison[i] == proposition[j]) {
+                    present++;
+                    break;
+                }
+            }
+        }
+        System.out.println("présent: " + present);
+        return present;
+    }
 
     protected abstract int demanderAttaquant();
 
     protected abstract int demanderDefenseur();
 
 }
+
 

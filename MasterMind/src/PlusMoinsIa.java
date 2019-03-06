@@ -21,15 +21,12 @@ public class PlusMoinsIa extends PlusMoins {
                 switch (indice) {
                     case '=':
                         derniereTentative[i] = derniereTentative[i];
-                        //random = convertir(derniereTentative);
                         break;
                     case '+':
                         derniereTentative[i] = derniereTentative[i]+1;
-                        //random = convertir(derniereTentative);
                         break;
                     case '-':
                         derniereTentative[i] = derniereTentative[i]-1;
-                        //random = convertir(derniereTentative);
                         break;
                 }
             }

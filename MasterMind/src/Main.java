@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PlusMoins plusMoins = new PlusMoinsIa();
+        PlusMoins plusMoins = new MasterMindChallenger();
         plusMoins.init();
         plusMoins.jouer();
 
