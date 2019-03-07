@@ -75,7 +75,7 @@ public abstract class PlusMoins {
             for (int j = 0; j < proposition.length; j++) {
                 if (combinaison[i] == proposition[j]) {
                     present++;
-                    break;
+                    break; // devrait empêcher de compter plusieurs fois le même présent
                 }
             }
         }
