@@ -1,7 +1,9 @@
+package game.plusmoins;
+
 import java.util.Scanner;
 
 public class PlusMoinsChallenger extends PlusMoins {
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     //joueur humain attaque
     @Override

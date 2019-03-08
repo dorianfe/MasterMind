@@ -1,8 +1,14 @@
+package game.plusmoins;
+
+import java.util.Scanner;
+
 public class PlusMoinsIa extends PlusMoins {
 
     private int[] derniereTentative;
     private int random;
     private boolean alreadyExecuted;
+    private Scanner sc = new Scanner(System.in);
+
 
 
     @Override
