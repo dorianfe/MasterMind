@@ -10,7 +10,6 @@ public abstract class Game {
     public void jouer() {
         do {
             proposition();
-            //verifCombiMaster();
             verifCombi();
         }
         while (!Arrays.equals(combinaison, proposition));
