@@ -12,9 +12,8 @@ public abstract class MasterMind extends Game {
             if (combinaison[i] == proposition[i]) {
                 bienPlace++;
             }
-
             for (int j = 0; j < proposition.length; j++) {
-                if (combinaison[i] == proposition[j]) {
+                if (combinaison[i] == proposition[j] && combinaison[i] != proposition[i]) {
                     present++;
                     break; // devrait empêcher de compter plusieurs fois le même présent
                 }
@@ -22,8 +21,8 @@ public abstract class MasterMind extends Game {
         }
         System.out.println("présent: " + present);
         System.out.println("bien placé: " + bienPlace);
-        String indice = "";
-        return ;
+        //String indice = "";
+        return String.valueOf(bienPlace);
     }
 }
 
