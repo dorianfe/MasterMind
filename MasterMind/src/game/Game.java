@@ -12,7 +12,7 @@ public abstract class Game {
             proposition();
             verifCombi();
         }
-        while (!Arrays.equals(combinaison, proposition));
+        while (!Arrays.equals(combinaison, proposition)); //il faudrait arrêter la partie du mastermind avant que propo = combi
     }
 
     public void proposition() {
