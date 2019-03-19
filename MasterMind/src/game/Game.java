@@ -7,12 +7,12 @@ public abstract class Game {
     protected int[] combinaison;
     protected int[] proposition;
 
-    public void jouer() {
+    public void jouer() { //permet de lancer ds l'ordre la proposition qui est convertie puis de vérifier la combinaison
         do {
             proposition();
             verifCombi();
         }
-        while (!Arrays.equals(combinaison, proposition)); //il faudrait arrêter la partie du mastermind avant que propo = combi
+        while (!Arrays.equals(combinaison, proposition));
     }
 
     public void proposition() {
@@ -26,7 +26,7 @@ public abstract class Game {
 
     }
 
-    protected int[] convertir(int nb) {
+    protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
         int[] retVal = new int[4];
         int i = 3;
         while (nb != 0) {
@@ -38,7 +38,7 @@ public abstract class Game {
         return retVal;
     }
 
-    protected int convertir(int[] thisIsAnArray) {
+    protected int convertir(int[] thisIsAnArray) { //convertit dansl'autre sens - int[] en int
         String delimiter = "";
         StringBuilder sb = new StringBuilder();
         for (int element : thisIsAnArray) {

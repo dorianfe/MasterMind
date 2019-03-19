@@ -5,7 +5,7 @@ import game.Game;
 public abstract class MasterMind extends Game {
 
     @Override
-    protected String verifCombi() {
+    protected String verifCombi() { //vérifie la combinaison et donne les indices
         int present = 0;
         int bienPlace = 0;
         for (int i = 0; i < combinaison.length; i++) {
@@ -19,7 +19,7 @@ public abstract class MasterMind extends Game {
                 }
             }
         }
-        System.out.println("présent: " + present);
+        System.out.println("mal placé: " + present);
         System.out.println("bien placé: " + bienPlace);
         //String indice = "";
         return String.valueOf(bienPlace);

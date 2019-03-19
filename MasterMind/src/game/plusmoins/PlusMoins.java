@@ -5,7 +5,7 @@ import game.Game;
 public abstract class PlusMoins extends Game {
 
     @Override
-    protected String verifCombi() {
+    protected String verifCombi() { // vérifie la combinaison en retournant un indice
         String indice = "";
         for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] < proposition[i]) {

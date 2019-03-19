@@ -20,7 +20,7 @@ public class PlusMoinsIa extends PlusMoins {
         }
         do {
             derniereTentative = convertir(random);
-            System.out.println("Je fais une proposition : ");
+            System.out.println("Je fais une proposition : "); //en fonction de l'indice, garde la valeur ou la modifie de +1/-1
             int i;
             for (i = 0; i < 4; i++) {
                 char indice = verifCombi().charAt(i);
