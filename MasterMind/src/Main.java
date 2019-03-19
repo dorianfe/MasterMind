@@ -2,7 +2,7 @@ import game.mastermind.MasterMind;
 import game.mastermind.MasterMindChallenger;
 import game.plusmoins.PlusMoins;
 import game.plusmoins.PlusMoinsChallenger;
-import game.plusmoins.PlusMoinsIa;
+import game.plusmoins.PlusMoinsDefenseur;
 
 public class Main {
 
@@ -11,7 +11,7 @@ public class Main {
         MasterMind masterMind = new MasterMindChallenger();
         masterMind.init();
         masterMind.jouer();
-        PlusMoins plusMoins = new PlusMoinsChallenger();
+        PlusMoins plusMoins = new PlusMoinsDefenseur();
         plusMoins.init();
         plusMoins.jouer();
     }

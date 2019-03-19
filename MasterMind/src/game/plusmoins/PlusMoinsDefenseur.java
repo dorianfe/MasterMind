@@ -2,7 +2,7 @@ package game.plusmoins;
 
 import java.util.Scanner;
 
-public class PlusMoinsIa extends PlusMoins {
+public class PlusMoinsDefenseur extends PlusMoins {
 
     private int[] derniereTentative;
     private int random;
