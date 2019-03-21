@@ -1,11 +1,14 @@
 package game;
 
+
 import java.util.Arrays;
 
 public abstract class Game {
 
     protected int[] combinaison;
     protected int[] proposition;
+
+
 
     public void jouer() { //permet de lancer ds l'ordre la proposition qui est convertie puis de vérifier la combinaison
         do {
@@ -52,6 +55,9 @@ public abstract class Game {
 
         return result;
     }
+
+
+
 
     protected abstract int demanderAttaquant();
 

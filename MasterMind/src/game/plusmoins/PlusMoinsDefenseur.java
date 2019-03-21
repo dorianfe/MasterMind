@@ -9,10 +9,8 @@ public class PlusMoinsDefenseur extends PlusMoins {
     private boolean alreadyExecuted;
     private Scanner sc = new Scanner(System.in);
 
-
-
     @Override
-    protected int demanderAttaquant() {
+    protected int demanderAttaquant() { //la machine attaque
         if (!alreadyExecuted) {
             random = (int) (Math.random() * 9999);
             alreadyExecuted = true;
@@ -42,7 +40,7 @@ public class PlusMoinsDefenseur extends PlusMoins {
     }
 
     @Override
-    protected int demanderDefenseur() {
+    protected int demanderDefenseur() { //joueur humain défend
         System.out.println("Entrez une combinaison de 4 chiffres : ");
         int x = sc.nextInt();
         return x;
