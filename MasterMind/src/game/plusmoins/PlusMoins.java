@@ -4,8 +4,9 @@ import game.Game;
 
 public abstract class PlusMoins extends Game {
 
-    private PlusMoins PlusMoinsChallenger;
+    /*private PlusMoins PlusMoinsChallenger;
     private PlusMoins PlusMoinsDefenseur;
+
 
     private void tour(){
         int turn = 1;
@@ -21,7 +22,7 @@ public abstract class PlusMoins extends Game {
         attaque.demanderDefenseur();
         defense.demanderAttaquant();
 
-    }
+    }*/
 
     @Override
     protected String verifCombi() { // vérifie la combinaison en retournant un indice
