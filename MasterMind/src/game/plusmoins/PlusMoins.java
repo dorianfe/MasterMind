@@ -4,11 +4,12 @@ import game.Game;
 
 public abstract class PlusMoins extends Game {
 
-    /*private PlusMoins PlusMoinsChallenger;
+    private PlusMoins PlusMoinsChallenger;
     private PlusMoins PlusMoinsDefenseur;
 
 
-    private void tour(){
+    protected abstract void tour();
+    /*{
         int turn = 1;
         if (turn % 2 == 1) {
             duel(PlusMoinsChallenger, PlusMoinsDefenseur);
@@ -17,8 +18,10 @@ public abstract class PlusMoins extends Game {
         }
         turn++;
 
-    }
-    private void duel(PlusMoins attaque, PlusMoins defense) {
+    }*/
+
+    protected abstract void duel(PlusMoins attaque, PlusMoins defense);
+    /*{
         attaque.demanderDefenseur();
         defense.demanderAttaquant();
 
