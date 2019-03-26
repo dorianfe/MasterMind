@@ -4,29 +4,6 @@ import game.Game;
 
 public abstract class PlusMoins extends Game {
 
-    private PlusMoins PlusMoinsChallenger;
-    private PlusMoins PlusMoinsDefenseur;
-
-
-    protected abstract void tour();
-    /*{
-        int turn = 1;
-        if (turn % 2 == 1) {
-            duel(PlusMoinsChallenger, PlusMoinsDefenseur);
-        } else {
-            duel(PlusMoinsDefenseur, PlusMoinsChallenger);
-        }
-        turn++;
-
-    }*/
-
-    protected abstract void duel(PlusMoins attaque, PlusMoins defense);
-    /*{
-        attaque.demanderDefenseur();
-        defense.demanderAttaquant();
-
-    }*/
-
     @Override
     protected String verifCombi() { // vérifie la combinaison en retournant un indice
         String indice = "";
@@ -42,8 +19,6 @@ public abstract class PlusMoins extends Game {
         System.out.println(indice);
         return indice;
     }
-
-
 }
 
 
