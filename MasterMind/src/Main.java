@@ -8,11 +8,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MasterMind masterMind = new MasterMindChallenger();
+        /*MasterMind masterMind = new MasterMindChallenger();
         masterMind.init();
         masterMind.jouer();
         PlusMoins plusMoins = new PlusMoinsDefenseur();
         plusMoins.init();
-        plusMoins.jouer();
+        plusMoins.jouer();*/
     }
 }

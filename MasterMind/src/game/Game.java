@@ -9,16 +9,20 @@ public abstract class Game {
     protected int[] proposition;
 
 
-
     public void jouer() { //permet de lancer ds l'ordre la proposition qui est convertie puis de vérifier la combinaison
-        do {
-            proposition();
-            verifCombi();
+        boolean jeuFini = false;
+        while (!jeuFini) {
+            jeuFini = jouerTour();
         }
-        while (!Arrays.equals(combinaison, proposition));
     }
 
-    public void proposition() {
+    public boolean jouerTour() {
+        proposition();
+        verifCombi();
+    return Arrays.equals(combinaison, proposition);
+    }
+
+    private void proposition() {
         proposition = convertir(demanderAttaquant());
         System.out.println(Arrays.toString(proposition));
     }
