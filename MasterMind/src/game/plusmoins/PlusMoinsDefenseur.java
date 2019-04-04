@@ -8,7 +8,7 @@ public class PlusMoinsDefenseur extends PlusMoins {
     private int random;
     private boolean alreadyExecuted;
     private Scanner sc = new Scanner(System.in);
-
+    
     @Override
     protected int demanderAttaquant() { //la machine attaque
         if (!alreadyExecuted) {

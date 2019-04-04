@@ -26,4 +26,23 @@ public abstract class MasterMind extends Game {
     }
 }
 
+    /*public int verifCombi() {
+    int present = 0;
+        for (int i = 0; i < combinaison.length; i++) {
+            for (int j = 0; j < proposition.length; j++) {
+                if (combinaison[i] == proposition[j]) {
+                    present++;
+                    break; // devrait empêcher de compter plusieurs fois le même présent
+                }
+            }
+        }
+        System.out.println("présent: " + present);
+        return present;
+    }
+
+    }
+
+    }*/
+
+
 

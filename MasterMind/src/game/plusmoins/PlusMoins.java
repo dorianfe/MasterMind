@@ -4,6 +4,7 @@ import game.Game;
 
 public abstract class PlusMoins extends Game {
 
+
     @Override
     protected String verifCombi() { // vérifie la combinaison en retournant un indice
         String indice = "";
@@ -19,6 +20,8 @@ public abstract class PlusMoins extends Game {
         System.out.println(indice);
         return indice;
     }
+
+
 }
 
 

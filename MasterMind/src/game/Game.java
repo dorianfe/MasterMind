@@ -1,28 +1,43 @@
 package game;
 
 
+import game.plusmoins.PlusMoins;
+import game.plusmoins.PlusMoinsChallenger;
+import game.plusmoins.PlusMoinsDefenseur;
+
 import java.util.Arrays;
 
 public abstract class Game {
 
-    protected int[] combinaison;
-    protected int[] proposition;
+    public int[] combinaison;
+    public int[] proposition;
 
 
-    public void jouer() { //permet de lancer ds l'ordre la proposition qui est convertie puis de vérifier la combinaison
-        boolean jeuFini = false;
-        while (!jeuFini) {
-            jeuFini = jouerTour();
-        }
+    public void duel() {
+        PlusMoins plusMoins = new PlusMoinsDefenseur();
+        PlusMoins plusMoins1 = new PlusMoinsChallenger();
+        plusMoins.init();
+        do {
+            plusMoins.jouerDuel();
+            plusMoins1.jouerDuel();
+        } while (!Arrays.equals(combinaison, proposition));
     }
 
-    public boolean jouerTour() {
+
+    public void jouerDuel() {
         proposition();
         verifCombi();
-    return Arrays.equals(combinaison, proposition);
     }
 
-    private void proposition() {
+    public void jouer() { //permet de lancer ds l'ordre la proposition qui est convertie puis de vérifier la combinaison
+        do {
+            proposition();
+            verifCombi();
+        }
+        while (!Arrays.equals(combinaison, proposition));
+    }
+
+    public void proposition() {
         proposition = convertir(demanderAttaquant());
         System.out.println(Arrays.toString(proposition));
     }
@@ -59,8 +74,6 @@ public abstract class Game {
 
         return result;
     }
-
-
 
 
     protected abstract int demanderAttaquant();
