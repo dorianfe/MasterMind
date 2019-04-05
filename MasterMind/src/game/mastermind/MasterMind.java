@@ -5,7 +5,7 @@ import game.Game;
 public abstract class MasterMind extends Game {
 
     @Override
-    protected String verifCombi() { //vérifie la combinaison et donne les indices
+    protected String verifCombi() { //Mettre,les 2 tableaux en param
         int present = 0;
         int bienPlace = 0;
         for (int i = 0; i < combinaison.length; i++) {
@@ -15,7 +15,7 @@ public abstract class MasterMind extends Game {
             for (int j = 0; j < proposition.length; j++) {
                 if (combinaison[i] == proposition[j] && combinaison[i] != proposition[i]) {
                     present++;
-                    break; // devrait empêcher de compter plusieurs fois le même présent
+                    break;
                 }
             }
         }
@@ -26,23 +26,6 @@ public abstract class MasterMind extends Game {
     }
 }
 
-    /*public int verifCombi() {
-    int present = 0;
-        for (int i = 0; i < combinaison.length; i++) {
-            for (int j = 0; j < proposition.length; j++) {
-                if (combinaison[i] == proposition[j]) {
-                    present++;
-                    break; // devrait empêcher de compter plusieurs fois le même présent
-                }
-            }
-        }
-        System.out.println("présent: " + present);
-        return present;
-    }
-
-    }
-
-    }*/
 
 
 

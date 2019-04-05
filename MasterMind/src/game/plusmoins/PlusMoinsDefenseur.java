@@ -10,7 +10,7 @@ public class PlusMoinsDefenseur extends PlusMoins {
     private Scanner sc = new Scanner(System.in);
     
     @Override
-    protected int demanderAttaquant() { //la machine attaque
+    protected int demanderAttaquant() { //sans doute dernière tentative en entrée
         if (!alreadyExecuted) {
             random = (int) (Math.random() * 9999);
             alreadyExecuted = true;

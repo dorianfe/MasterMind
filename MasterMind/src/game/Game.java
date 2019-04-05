@@ -9,19 +9,8 @@ import java.util.Arrays;
 
 public abstract class Game {
 
-    public int[] combinaison;
-    public int[] proposition;
-
-
-    public void duel() {
-        PlusMoins plusMoins = new PlusMoinsDefenseur();
-        PlusMoins plusMoins1 = new PlusMoinsChallenger();
-        plusMoins.init();
-        do {
-            plusMoins.jouerDuel();
-            plusMoins1.jouerDuel();
-        } while (!Arrays.equals(combinaison, proposition));
-    }
+    protected int[] combinaison;
+    protected int[] proposition;
 
 
     public void jouerDuel() {
@@ -45,7 +34,6 @@ public abstract class Game {
     public void init() {
         combinaison = convertir(demanderDefenseur());
         System.out.println(Arrays.toString(combinaison));
-
     }
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
