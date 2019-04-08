@@ -80,10 +80,10 @@ public abstract class Mode {
                             derniereTentative[i] = derniereTentative[i];
                             break;
                         case '+':
-                            derniereTentative[i] = derniereTentative[i] + 1;
+                            derniereTentative[i] = derniereTentative[i] + 1; // ajouter dicho https://openclassrooms.com/fr/courses/1089536-recherche-dichotomique
                             break;
                         case '-':
-                            derniereTentative[i] = derniereTentative[i] - 1;
+                            derniereTentative[i] = derniereTentative[i] - 1; //""
                             break;
                     }
                 }
