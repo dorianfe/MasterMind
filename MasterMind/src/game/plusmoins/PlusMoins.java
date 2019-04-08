@@ -1,3 +1,4 @@
+/*
 package game.plusmoins;
 
 import game.Game;
@@ -25,3 +26,4 @@ public abstract class PlusMoins extends Game {
 }
 
 
+*/

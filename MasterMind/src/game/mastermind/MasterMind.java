@@ -1,3 +1,4 @@
+/*
 package game.mastermind;
 
 import game.Game;
@@ -29,3 +30,4 @@ public abstract class MasterMind extends Game {
 
 
 
+*/

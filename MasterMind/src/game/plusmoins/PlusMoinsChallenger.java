@@ -1,3 +1,4 @@
+/*
 package game.plusmoins;
 
 import java.util.Scanner;
@@ -19,3 +20,4 @@ public class PlusMoinsChallenger extends PlusMoins {
         return (int)random;
     }
 }
+*/

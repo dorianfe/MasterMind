@@ -1,9 +1,5 @@
+/*
 package game;
-
-
-import game.plusmoins.PlusMoins;
-import game.plusmoins.PlusMoinsChallenger;
-import game.plusmoins.PlusMoinsDefenseur;
 
 import java.util.Arrays;
 
@@ -71,3 +67,4 @@ public abstract class Game {
     protected abstract String verifCombi();
 
 }
+*/

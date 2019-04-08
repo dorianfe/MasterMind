@@ -1,3 +1,4 @@
+/*
 package game.mastermind;
 
 import java.util.Scanner;
@@ -18,3 +19,4 @@ public class MasterMindChallenger extends MasterMind {
         return (int)random;
     }
 }
+*/

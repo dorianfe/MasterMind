@@ -1,3 +1,4 @@
+/*
 package game.plusmoins;
 
 import java.util.Scanner;
@@ -48,3 +49,4 @@ public class PlusMoinsDefenseur extends PlusMoins {
 
 }
 
+*/
