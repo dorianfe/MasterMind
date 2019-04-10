@@ -6,9 +6,10 @@ public abstract class Mode {
     private Scanner sc = new Scanner(System.in);
     private String[] set = new String[2];
     private boolean alreadyExecuted;
-    private int[] derniereTentative;
+    protected int[] derniereTentative;
+    protected int[] combinaison;
+    protected int[] proposition;
 
-    protected abstract void run();
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
         int[] retVal = new int[4];
@@ -22,9 +23,9 @@ public abstract class Mode {
         return retVal;
     }
 
-    protected String[] verifCombi(int[] combinaison, int[] proposition, int gameType) {
+    protected String verifCombi(int[] combinaison, int[] proposition, int gameType) {
         //gameType = PlusMoins ou Mastermind
-// blackPeg = bien placé  -- whitePeg = mal placé mais présent -- Pour gameType PlusMoins seulement blackPeg
+        // blackPeg = bien placé  -- whitePeg = mal placé mais présent
         int blackPeg = 0;
         int whitePeg = 0;
         String indice = "";
@@ -45,12 +46,11 @@ public abstract class Mode {
             }
         }
         if (gameType == 0) { //0 = PlusMoins
-            set[0] = indice;
+            return indice;
         } else {
-            set[0] = "" + blackPeg;
-            set[1] = "" + whitePeg
+            indice = "" + blackPeg + whitePeg;
         }
-        return set;
+        return indice;
     }
 
 
@@ -60,42 +60,43 @@ public abstract class Mode {
     }
 
     protected int randomProposition() {
-        double proposition = Math.random() * 9999;
-        return (int)proposition;
+        double rdmProposition = Math.random() * 9999;
+        return (int) rdmProposition;
     }
 
     protected int[] computerTest(int gameType) {
         if (gameType == 0) {
-            if (!alreadyExecuted) {
-                derniereTentative = convertir(randomProposition())
-                alreadyExecuted = true;
-                return derniereTentative;
-            }
-            do {
-                int i;
-                for (i = 0; i < 4; i++) {
-                    char indice = set[0].charAt(i);
-                    switch (indice) {
-                        case '=':
-                            derniereTentative[i] = derniereTentative[i];
-                            break;
-                        case '+':
-                            derniereTentative[i] = derniereTentative[i] + 1; // ajouter dicho https://openclassrooms.com/fr/courses/1089536-recherche-dichotomique
-                            break;
-                        case '-':
-                            derniereTentative[i] = derniereTentative[i] - 1; //""
-                            break;
-                    }
+            int i;
+            for (i = 0; i < 4; i++) {
+                char indice = verifCombi(combinaison, proposition, 0).charAt(i);
+                derniereTentative = proposition;
+                switch (indice) {
+                    case '=':
+                        derniereTentative[i] = derniereTentative[i];
+                        break;
+                    case '+':
+                        derniereTentative[i] = derniereTentative[i] + 1; // ajouter dicho https://openclassrooms.com/fr/courses/1089536-recherche-dichotomique
+                        break;
+                    case '-':
+                        derniereTentative[i] = derniereTentative[i] - 1; //""
+                        break;
                 }
+                derniereTentative = proposition;
 
-            }while (alreadyExecuted = true);
+            }
+        } else {
+            //knuth pour mastermind ?
+            return derniereTentative;
         }
-        return derniereTentative;
+        return proposition;
+
     }
+
+    public abstract void run(int gameType);
 
     /*int rechercheDicho(int tab[], int nbVal, int val){
 
-        *//* déclaration des variables locales à la fonction *//*
+     *//* déclaration des variables locales à la fonction *//*
         bool trouve;  //vaut faux tant que la valeur "val" n'aura pas été trouvée
         int id;  //indice de début
         int ifin;  //indice de fin
