@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public abstract class Mode {
     private Scanner sc = new Scanner(System.in);
-    private String[] set = new String[2];
-    private boolean alreadyExecuted;
     protected int[] derniereTentative;
     protected int[] combinaison;
     protected int[] proposition;
+    protected int[] propositionInitiale;
+    String indice;
 
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
@@ -28,7 +28,7 @@ public abstract class Mode {
         // blackPeg = bien placé  -- whitePeg = mal placé mais présent
         int blackPeg = 0;
         int whitePeg = 0;
-        String indice = "";
+        indice = "";
         for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] < proposition[i]) {
                 indice = indice + "-";
@@ -59,12 +59,12 @@ public abstract class Mode {
         return x;
     }
 
-    protected int randomProposition() {
+    protected int rdmProposition() {
         double rdmProposition = Math.random() * 9999;
         return (int) rdmProposition;
     }
 
-    protected int[] computerTest(int gameType) {
+    protected int[] computerTest(int[] propositionInitiale, int gameType) {
         if (gameType == 0) {
             int i;
             for (i = 0; i < 4; i++) {
@@ -75,10 +75,13 @@ public abstract class Mode {
                         derniereTentative[i] = derniereTentative[i];
                         break;
                     case '+':
-                        derniereTentative[i] = derniereTentative[i] + 1; // ajouter dicho https://openclassrooms.com/fr/courses/1089536-recherche-dichotomique
+
+                        derniereTentative[i] = //faire techinque modulo
+
                         break;
                     case '-':
-                        derniereTentative[i] = derniereTentative[i] - 1; //""
+                        derniereTentative[i] = (derniereTentative[i])/2;
+
                         break;
                 }
                 derniereTentative = proposition;
