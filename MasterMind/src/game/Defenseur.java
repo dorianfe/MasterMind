@@ -15,7 +15,7 @@ public class Defenseur extends Mode {
             System.out.println(Arrays.toString(proposition));
             verifCombi(combinaison, proposition, 0);
             while (!Arrays.equals(combinaison, proposition)) {
-                verifCombi(combinaison, computerTest(propositionInitiale, 0), 0);
+                verifCombi(combinaison, computerTest(indice,0), 0);
                 System.out.println("indice " + indice);
                 System.out.println(Arrays.toString(proposition));
             }

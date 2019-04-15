@@ -64,24 +64,21 @@ public abstract class Mode {
         return (int) rdmProposition;
     }
 
-    protected int[] computerTest(int[] propositionInitiale, int gameType) {
+    protected int[] computerTest(String indice,int gameType) {
         if (gameType == 0) {
             int i;
             for (i = 0; i < 4; i++) {
-                char indice = verifCombi(combinaison, proposition, 0).charAt(i);
+                char plusMoins = indice.charAt(i);
                 derniereTentative = proposition;
-                switch (indice) {
+                switch (plusMoins) {
                     case '=':
                         derniereTentative[i] = derniereTentative[i];
                         break;
                     case '+':
-
-                        derniereTentative[i] = //faire techinque modulo
-
+                        derniereTentative[i] = derniereTentative[i] + 1;
                         break;
                     case '-':
-                        derniereTentative[i] = (derniereTentative[i])/2;
-
+                        derniereTentative[i] = derniereTentative[i] - 1;
                         break;
                 }
                 derniereTentative = proposition;
