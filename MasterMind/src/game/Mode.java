@@ -25,22 +25,22 @@ public abstract class Mode {
 
     protected String verifCombi(int[] combinaison, int[] proposition, int gameType) {
         //gameType = PlusMoins ou Mastermind
-        // blackPeg = bien placé  -- whitePeg = mal placé mais présent
-        int blackPeg = 0;
-        int whitePeg = 0;
+        // blackPeg (B) = bien placé  -- whitePeg (W) = mal placé mais présent
+        int B = 0;
+        int W = 0;
         indice = "";
         for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] < proposition[i]) {
                 indice = indice + "-";
             } else if (combinaison[i] == proposition[i]) {
                 indice = indice + "=";
-                blackPeg++;
+                B++;
             } else {
                 indice = indice + "+";
             }
             for (int j = 0; j < proposition.length; j++) {
                 if (combinaison[i] == proposition[j] && combinaison[i] != proposition[i]) {
-                    whitePeg++;
+                    W++;
                     break;
                 }
             }
@@ -48,7 +48,7 @@ public abstract class Mode {
         if (gameType == 0) { //0 = PlusMoins
             return indice;
         } else {
-            indice = "" + blackPeg + whitePeg;
+            indice = "B" + B + "W" + W;
         }
         return indice;
     }
@@ -63,6 +63,12 @@ public abstract class Mode {
         double rdmProposition = Math.random() * 9999;
         return (int) rdmProposition;
     }
+    /*
+    Random r = new Random();  Si besoin de random avec param pour nb_chiffres et max (de 0 à max+1)
+        for(int i=0 ; i<NB_CHIFFRES ; i++) {
+            solution[i] = r.nextInt(MAX+1);
+        }
+     */
 
     protected int[] computerTest(String indice,int gameType) {
         if (gameType == 0) {
