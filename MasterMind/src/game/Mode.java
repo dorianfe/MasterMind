@@ -60,7 +60,8 @@ public abstract class Mode {
     }
 
     protected int rdmProposition() {
-        double rdmProposition = Math.random() * 9999;
+        //double rdmProposition = Math.random() * 9999;
+        double rdmProposition = 4444;
         return (int) rdmProposition;
     }
     /*
@@ -70,7 +71,7 @@ public abstract class Mode {
         }
      */
 
-    protected int[] computerTest(String indice,int gameType) {
+    protected int[] computerTest(String indice, int gameType) {
         if (gameType == 0) {
             int i;
             for (i = 0; i < 4; i++) {
@@ -88,15 +89,15 @@ public abstract class Mode {
                         break;
                 }
                 derniereTentative = proposition;
-
             }
+
         } else {
             //knuth pour mastermind ?
             return derniereTentative;
         }
         return proposition;
-
     }
+
 
     public abstract void run(int gameType);
 
