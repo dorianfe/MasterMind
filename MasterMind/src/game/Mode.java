@@ -6,8 +6,7 @@ public abstract class Mode {
     private Scanner sc = new Scanner(System.in);
     protected int[] derniereTentative;
     protected int[] combinaison;
-    protected int[] proposition;
-    protected int[] propositionInitiale;
+    protected int[] propositionIa;
     String indice;
 
 
@@ -60,9 +59,15 @@ public abstract class Mode {
     }
 
     protected int rdmProposition() {
-        //double rdmProposition = Math.random() * 9999;
-        double rdmProposition = 4444;
+        double rdmProposition = Math.random() * 9999;
         return (int) rdmProposition;
+
+    }
+
+    protected int propositionInit() { //ajouter param gameType
+        //double propositionInit = Math.random() * 9999;
+        double propositionInit = 4444;
+        return (int) propositionInit;
     }
     /*
     Random r = new Random();  Si besoin de random avec param pour nb_chiffres et max (de 0 à max+1)
@@ -76,7 +81,7 @@ public abstract class Mode {
             int i;
             for (i = 0; i < 4; i++) {
                 char plusMoins = indice.charAt(i);
-                derniereTentative = proposition;
+                derniereTentative = propositionIa;
                 switch (plusMoins) {
                     case '=':
                         derniereTentative[i] = derniereTentative[i];
@@ -88,14 +93,14 @@ public abstract class Mode {
                         derniereTentative[i] = derniereTentative[i] - 1;
                         break;
                 }
-                derniereTentative = proposition;
+                derniereTentative = propositionIa;
             }
 
         } else {
             //knuth pour mastermind ?
             return derniereTentative;
         }
-        return proposition;
+        return propositionIa;
     }
 
 
