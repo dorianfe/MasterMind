@@ -53,7 +53,7 @@ public abstract class Mode {
     }
 
 
-    protected int saisir() {
+    protected int saisir() { // try catch
         int x = sc.nextInt();
         return x;
     }
@@ -64,8 +64,7 @@ public abstract class Mode {
 
     }
 
-    protected int propositionInit() { //ajouter param gameType
-        //double propositionInit = Math.random() * 9999;
+    protected int propositionInit() {
         double propositionInit = 4444;
         return (int) propositionInit;
     }

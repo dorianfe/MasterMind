@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         Mode mode = new Duel();
-        mode.run(0);
+        mode.run(1);
 
 
 
