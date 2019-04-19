@@ -5,8 +5,6 @@ import java.util.Arrays;
 public class Defenseur extends Mode {
     int nbEssais;
 
-
-
     @Override
     public void run(int gameType) {
         if (gameType == 0) {

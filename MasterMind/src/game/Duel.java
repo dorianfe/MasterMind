@@ -8,7 +8,6 @@ public class Duel extends Mode {
     private int[] propositionHum;
     private String indiceIa;
 
-
     @Override
     public void run(int gameType) {
         if (gameType == 0) {
