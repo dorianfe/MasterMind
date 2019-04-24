@@ -3,7 +3,7 @@ package game;
 import java.util.Arrays;
 
 public class Defenseur extends Mode {
-    int nbEssais;
+    private int nbEssais;
 
     @Override
     public void run(int gameType) {
