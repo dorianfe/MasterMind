@@ -71,22 +71,21 @@ public abstract class Mode {
 
     protected int[] computerTest(String indice, int gameType) {
         if (gameType == 0) {
+            propositionIa = derniereTentative;
             int i;
             for (i = 0; i < 4; i++) {
                 char plusMoins = indice.charAt(i);
-                derniereTentative = propositionIa;
                 switch (plusMoins) {
                     case '=':
-                        derniereTentative[i] = derniereTentative[i];
+                        propositionIa[i] = derniereTentative[i];
                         break;
                     case '+':
-                        derniereTentative[i] = derniereTentative[i] + 1;
+                        propositionIa[i] = derniereTentative[i] + 1;
                         break;
                     case '-':
-                        derniereTentative[i] = derniereTentative[i] - 1;
+                        propositionIa[i] = derniereTentative[i] - 1;
                         break;
                 }
-                derniereTentative = propositionIa;
             }
 
         } else {

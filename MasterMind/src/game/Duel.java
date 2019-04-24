@@ -6,6 +6,7 @@ public class Duel extends Mode {
     private int nbEssais;
     private boolean alreadyExecuted;
     private int[] propositionHum;
+    private int[] propositionIaFinale;
     private String indiceIa;
 
     @Override
@@ -24,19 +25,19 @@ public class Duel extends Mode {
                     indiceIa = indice;
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa);
                 } else {
-                    computerTest(indiceIa, 0); //**
-                    verifCombi(combinaison, propositionIa, 0);
+                    verifCombi(combinaison, computerTest(indiceIa, 0), 0);
                     indiceIa = indice;
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa);
+                    propositionIaFinale = propositionIa;
                 }
 
-            } while (!Arrays.equals(combinaison, propositionHum) && !Arrays.equals(combinaison, propositionIa));
-            if (combinaison == propositionHum) {
-                System.out.println("Victoire joueur Hum!");
-            } else if (indiceIa == indice) { //propositionHum jamais = à propositionIa au sortir de la boucle
-                System.out.println("ex-aequo!");// car Ia a déjà joué ** d'où la comparaison des indices pour le cas ex-aequo
-            } else {
+            } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum));
+            if (propositionIaFinale == propositionHum) {
+                System.out.println("ex-aequo!");
+            } else if (combinaison == propositionIaFinale) {
                 System.out.println("Victoire IA!");
+            } else {
+                System.out.println("Victoire joueur humain!");
             }
         } else {
             System.out.println("---");
