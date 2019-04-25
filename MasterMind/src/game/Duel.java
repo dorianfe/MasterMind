@@ -30,15 +30,18 @@ public class Duel extends Mode {
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa);
                     propositionIaFinale = propositionIa;
                 }
+                /*if (propositionIaFinale == propositionHum) { // ne fonctione pas, dans ou en dehors de la boucle while
+                    System.out.println("ex-aequo!");
+                } else if (combinaison == propositionIaFinale) {
+                    System.out.println("Victoire IA!");
+                } else if (combinaison == propositionHum) {
+                    System.out.println("Victoire joueur humain!");
+                } else {
+                    System.out.println("--");
+                }*/
 
             } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum));
-            if (propositionIaFinale == propositionHum) {
-                System.out.println("ex-aequo!");
-            } else if (combinaison == propositionIaFinale) {
-                System.out.println("Victoire IA!");
-            } else {
-                System.out.println("Victoire joueur humain!");
-            }
+
         } else {
             System.out.println("---");
         }
