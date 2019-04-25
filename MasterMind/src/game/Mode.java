@@ -71,7 +71,7 @@ public abstract class Mode {
 
     protected int[] computerTest(String indice, int gameType) {
         if (gameType == 0) {
-            propositionIa = derniereTentative;
+            derniereTentative = propositionIa;
             int i;
             for (i = 0; i < 4; i++) {
                 char plusMoins = indice.charAt(i);
@@ -80,7 +80,7 @@ public abstract class Mode {
                         propositionIa[i] = derniereTentative[i];
                         break;
                     case '+':
-                        propositionIa[i] = derniereTentative[i] + 1;
+                        propositionIa[i] = (derniereTentative[i] + 10) / 2;
                         break;
                     case '-':
                         propositionIa[i] = derniereTentative[i] - 1;
