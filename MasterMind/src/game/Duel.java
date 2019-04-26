@@ -44,6 +44,16 @@ public class Duel extends Mode {
 
             } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum));
 
+            System.out.println(convertir(propositionIaFinale) + "--" + convertir(propositionHum) + "--" + convertir(combinaison));
+            if (convertir(propositionIaFinale) == convertir(propositionHum)) { // ne fonctione pas, dans ou en dehors de la boucle while
+                System.out.println("ex-aequo!");
+            } else if (convertir(combinaison) == convertir(propositionIaFinale)) {
+                System.out.println("Victoire IA!");
+            } else if (convertir(combinaison) == convertir(propositionHum)) {
+                System.out.println("Victoire joueur humain!");
+            } else {
+                System.out.println("--");
+            }
         } else {
             System.out.println("---");
         }

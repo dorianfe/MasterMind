@@ -22,6 +22,21 @@ public abstract class Mode {
         return retVal;
     }
 
+    protected int convertir(int[] thisIsAnArray) { //convertit dansl'autre sens - int[] en int
+        String delimiter = "";
+        StringBuilder sb = new StringBuilder();
+        for (int element : thisIsAnArray) {
+            if (sb.length() > 0) {
+                sb.append(delimiter);
+            }
+            sb.append(element);
+        }
+        String theString = sb.toString();
+        int result = Integer.parseInt(theString);
+
+        return result;
+    }
+
     protected String verifCombi(int[] combinaison, int[] proposition, int gameType) {
         //gameType = PlusMoins ou Mastermind
         // blackPeg (B) = bien placé  -- whitePeg (W) = mal placé mais présent
@@ -87,9 +102,16 @@ public abstract class Mode {
                         break;
                 }
             }
+           /* - Si X>A
+                    - Si (9-A)%2 = 0 alors X = X - (9-A)/2  sinon X = X - (9-A)/2 + 1
+                    - Si X<A
+            - Si (9-A)%2 = 0 alors X = X + (9-A)/2  sinon X = X + (9-A)/2 - 1 */
 
         } else {
             //knuth pour mastermind ?
+
+
+
             return derniereTentative;
         }
         return propositionIa;
