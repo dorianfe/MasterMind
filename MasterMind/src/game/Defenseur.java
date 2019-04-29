@@ -19,7 +19,7 @@ public class Defenseur extends Mode {
                 nbEssais++;
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(propositionIa));
                 if (nbEssais == 10) {
-                    System.out.println("Nombre essais max atteint.");
+                    System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));
                 }
             }
         }else {

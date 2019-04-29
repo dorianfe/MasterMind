@@ -35,7 +35,13 @@ public class Challenger extends Mode {
                 proposition = convertir(saisir());
                 nbEssais++;
                 verifCombi(combinaison, proposition,1);
+                System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(proposition));
+                if (nbEssais == 10){
+                    System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));
+                    break;
+                }
             } while (!Arrays.equals(combinaison, proposition));
+            System.out.println("Victoire en " + nbEssais + " essais.");
         }
     }
 }
