@@ -31,21 +31,10 @@ public class Duel extends Mode {
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                     propositionIaFinale = propositionIa;
                 }
-
-                /*if (propositionIaFinale == propositionHum) { // ne fonctione pas, dans ou en dehors de la boucle while
-                    System.out.println("ex-aequo!");
-                } else if (combinaison == propositionIaFinale) {
-                    System.out.println("Victoire IA!");
-                } else if (combinaison == propositionHum) {
-                    System.out.println("Victoire joueur humain!");
-                } else {
-                    System.out.println("--");
-                }*/
-
             } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum));
 
             System.out.println(convertir(propositionIaFinale) + "--" + convertir(propositionHum) + "--" + convertir(combinaison));
-            if (convertir(propositionIaFinale) == convertir(propositionHum)) { // ne fonctione pas, dans ou en dehors de la boucle while
+            if (convertir(propositionIaFinale) == convertir(propositionHum)) {
                 System.out.println("ex-aequo!");
             } else if (convertir(combinaison) == convertir(propositionIaFinale)) {
                 System.out.println("Victoire IA!");

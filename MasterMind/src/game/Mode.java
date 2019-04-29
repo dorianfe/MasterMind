@@ -111,7 +111,6 @@ public abstract class Mode {
             //knuth pour mastermind ?
 
 
-
             return derniereTentative;
         }
         return propositionIa;

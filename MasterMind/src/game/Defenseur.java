@@ -12,13 +12,12 @@ public class Defenseur extends Mode {
             combinaison = convertir(saisir());
             nbEssais = 1;
             propositionIa = convertir(propositionInit());
-            System.out.println(Arrays.toString(propositionIa));
+            System.out.println((" essais: " + nbEssais + " proposition ") + Arrays.toString(propositionIa));
             verifCombi(combinaison, propositionIa, 0);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 10) {
                 verifCombi(combinaison, computerTest(indice,0), 0);
                 nbEssais++;
-                System.out.println("indice " + indice + " essais: " + nbEssais);
-                System.out.println(Arrays.toString(propositionIa));
+                System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(propositionIa));
                 if (nbEssais == 10) {
                     System.out.println("Nombre essais max atteint.");
                 }
