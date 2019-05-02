@@ -8,7 +8,7 @@ public class Defenseur extends Mode {
     @Override
     public void run(int gameType) {
         if (gameType == 0) {
-            System.out.println("sasir code:"); // mettre limite nbre de tours ds la boucle, et indice ds comuterTest
+            System.out.println("sasir code:");
             combinaison = convertir(saisir());
             nbEssais = 1;
             propositionIa = convertir(propositionInit());
@@ -24,6 +24,10 @@ public class Defenseur extends Mode {
             }
         }else {
             System.out.println("---");
+            System.out.println("sasir code:");
+            combinaison = convertir(saisir());
+            propositionIa = convertir(1122);
+            verifCombi(combinaison, propositionIa, 1);
         }
     }
 }

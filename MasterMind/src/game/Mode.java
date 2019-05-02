@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public abstract class Mode {
@@ -7,7 +9,9 @@ public abstract class Mode {
     protected int[] derniereTentative;
     protected int[] combinaison;
     protected int[] propositionIa;
-    String indice;
+    private ArrayList<Integer> tentative = new ArrayList<Integer>();
+    protected String indice;
+    private int turn;
 
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
@@ -106,24 +110,41 @@ public abstract class Mode {
                     - Si (9-A)%2 = 0 alors X = X - (9-A)/2  sinon X = X - (9-A)/2 + 1
                     - Si X<A
             - Si (9-A)%2 = 0 alors X = X + (9-A)/2  sinon X = X + (9-A)/2 - 1 */
-
         } else {
             //knuth pour mastermind ?
 
+            int B = indice.charAt(2);
+            int W = indice.charAt(4);
+            if (B == 0 && W == 0) {
+                propositionIa = convertir(3344);
+            } else {
+                switch (B) {
+                    case 1:
 
-            return derniereTentative;
+                }
+            }
+            tentative.add(convertir(propositionIa), turn);
+            turn++;
+            return propositionIa;
+
+
         }
         return propositionIa;
     }
 
 
     public abstract void run(int gameType);
-
-    /*
-    Random r = new Random();  Si besoin de random avec param pour nb_chiffres et max (de 0 à max+1)
-        for(int i=0 ; i<NB_CHIFFRES ; i++) {
-            solution[i] = r.nextInt(MAX+1);
-        }
-     */
-
 }
+
+
+    /*public ArrayList<Integer> tentatives(int[] propositionIa, int i) {
+        ArrayList<Integer> tentative = new ArrayList<Integer>();
+
+        for (int i = 0; i < propositionIa.length; i++) {
+            tentative.add(propositionIa[i]);
+
+        }
+        return combos;
+
+
+    }/*
