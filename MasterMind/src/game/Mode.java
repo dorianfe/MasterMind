@@ -135,16 +135,3 @@ public abstract class Mode {
 
     public abstract void run(int gameType);
 }
-
-
-    /*public ArrayList<Integer> tentatives(int[] propositionIa, int i) {
-        ArrayList<Integer> tentative = new ArrayList<Integer>();
-
-        for (int i = 0; i < propositionIa.length; i++) {
-            tentative.add(propositionIa[i]);
-
-        }
-        return combos;
-
-
-    }/*
