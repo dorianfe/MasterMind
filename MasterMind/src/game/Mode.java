@@ -114,26 +114,17 @@ public abstract class Mode {
             - Si (9-A)%2 = 0 alors X = X + (9-A)/2  sinon X = X + (9-A)/2 - 1 */
         } else {
             //propositionIa = convertir(1122);
-
             _PossibleTokens = GetAllPossibleTokens();
-
-
-
-
-            //int B = indice.charAt(2);
-            //int W = indice.charAt(4);
-
-            /*if (B == 0 && W == 0) {
-                propositionIa = convertir(3344);
-            } else {
-                switch (B) {
-                    case 1:
-                        propositionIa =
+            int B = indice.charAt(2);
+            int W = indice.charAt(4);
+            if (B == 0 && W == 0) {
+                propositionIa = convertir(3344); // possible d'utiliser replace sur string
+            } else if (B + W >= 2) {
+                for (int i = 0; i < _PossibleTokens.size(); i++) {
 
                 }
             }
 
-          */
             tentatives.add(convertir(propositionIa), turn);
             turn++;
             return propositionIa;
