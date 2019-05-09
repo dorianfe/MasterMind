@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class Mode {
@@ -113,23 +114,23 @@ public abstract class Mode {
                     - Si X<A
             - Si (9-A)%2 = 0 alors X = X + (9-A)/2  sinon X = X + (9-A)/2 - 1 */
         } else {
-            //propositionIa = convertir(1122);
+
+
             _PossibleTokens = GetAllPossibleTokens();
-            int B = indice.charAt(2);
-            int W = indice.charAt(4);
+            int B = indice.charAt(1);
+            int W = indice.charAt(3);
             if (B == 0 && W == 0) {
+                removeAll(_PossibleTokens, 1);
+                removeAll(_PossibleTokens, 2);
+
                 propositionIa = convertir(3344); // possible d'utiliser replace sur string
+
             } else if (B + W >= 2) {
-                for (int i = 0; i < _PossibleTokens.size(); i++) {
+                System.out.println("-----");
 
-                }
             }
-
-            tentatives.add(convertir(propositionIa), turn);
-            turn++;
-            return propositionIa;
-
-
+           /* tentatives.add(convertir(propositionIa), turn);
+            turn++;*/
         }
         return propositionIa;
     }
@@ -149,6 +150,17 @@ public abstract class Mode {
         return tokens;
     }
 
+    private void removeAll(List<Integer> list, int element) {
+        List<Integer> remainingElements = new ArrayList<>();
+        for (Integer number : list) {
+            if (!Objects.equals(number, element)) {
+                remainingElements.add(number);
+            }
+        }
+
+        list.clear();
+        list.addAll(remainingElements);
+    }
 
     public abstract void run(int gameType);
 }
