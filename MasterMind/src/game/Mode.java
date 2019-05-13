@@ -1,9 +1,6 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class Mode {
     private Scanner sc = new Scanner(System.in);
@@ -119,19 +116,29 @@ public abstract class Mode {
             _PossibleTokens = GetAllPossibleTokens();
             int B = indice.charAt(1);
             int W = indice.charAt(3);
-            if (B == 0 && W == 0) {
-                removeAll(_PossibleTokens, 1);
-                removeAll(_PossibleTokens, 2);
+            int i;
+            for (i = 0; i < 4; i++) {
+                switch (B) {
 
-                propositionIa = convertir(3344); // possible d'utiliser replace sur string
+                    case 0:
+                        removeAll(_PossibleTokens, 1);
+                        removeAll(_PossibleTokens, 2);
+                        propositionIa = convertir(3344); // possible d'utiliser replace sur string
+                        break;
 
-            } else if (B + W >= 2) {
-                System.out.println("-----");
+                    case 1:
+                        propositionIa[i] = propositionIa[i];
+                        break;
+                    case 2:
 
+
+
+                }
             }
+        }
            /* tentatives.add(convertir(propositionIa), turn);
             turn++;*/
-        }
+
         return propositionIa;
     }
 
