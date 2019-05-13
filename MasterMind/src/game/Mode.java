@@ -124,6 +124,7 @@ public abstract class Mode {
                         removeAll(_PossibleTokens, 1);
                         removeAll(_PossibleTokens, 2);
                         propositionIa = convertir(3344); // possible d'utiliser replace sur string
+                        tentatives.add(convertir(propositionIa));
                         break;
 
                     case 1:
