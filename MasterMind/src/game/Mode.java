@@ -8,10 +8,10 @@ public abstract class Mode {
     protected int[] combinaison;
     protected int[] propositionIa;
     List<Integer> _PossibleTokens; //combinaisons possibles
-    List<Integer> tentatives;//liste pour stocker les tentatives mastermind
+    //List<Integer> tentatives;//liste pour stocker les tentatives mastermind
     int[] _ValidDigits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; //chiffres utilisables
     protected String indice;
-    private int turn;
+    //private int turn;
 
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
@@ -88,21 +88,20 @@ public abstract class Mode {
         return (int) propositionInit;
     }
 
-    protected int[] computerTest(String indice, int gameType) {
+    protected int[] computerTest(String indiceIn, int gameType) {
         if (gameType == 0) {
-            derniereTentative = propositionIa;
             int i;
             for (i = 0; i < 4; i++) {
-                char plusMoins = indice.charAt(i);
+                char plusMoins = indiceIn.charAt(i);
                 switch (plusMoins) {
                     case '=':
-                        propositionIa[i] = derniereTentative[i];
+                        propositionIa[i] = propositionIa[i];
                         break;
                     case '+':
-                        propositionIa[i] = (derniereTentative[i] + 10) / 2;
+                        propositionIa[i] = (propositionIa[i] + 10) / 2;
                         break;
                     case '-':
-                        propositionIa[i] = derniereTentative[i] - 1;
+                        propositionIa[i] = propositionIa[i] - 1;
                         break;
                 }
             }
@@ -111,14 +110,17 @@ public abstract class Mode {
                     - Si X<A
             - Si (9-A)%2 = 0 alors X = X + (9-A)/2  sinon X = X + (9-A)/2 - 1 */
         } else {
-
-
-            _PossibleTokens = GetAllPossibleTokens();
-            int B = indice.charAt(1);
-            int W = indice.charAt(3);
+            /*int B = indice.charAt(1);
+            int W = indice.charAt(3);*/
             int i;
-            for (i = 0; i < 4; i++) {
-                switch (B) {
+            for (i = 0; i < _PossibleTokens.size(); i++) {
+                int[] token = convertir(_PossibleTokens.get(i));
+                if (verifCombi(token, propositionIa, 1) != indiceIn) { //attention à différencier "indice"
+                    removeAll(_PossibleTokens, i);
+                    Random rand = new Random();
+                    propositionIa = convertir(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size())));
+                }
+                /*switch (B) {
 
                     case 0:
                         removeAll(_PossibleTokens, 1);
@@ -134,16 +136,13 @@ public abstract class Mode {
 
 
 
-                }
+                }*/
             }
         }
-           /* tentatives.add(convertir(propositionIa), turn);
-            turn++;*/
-
         return propositionIa;
     }
 
-    private List<Integer> GetAllPossibleTokens() {
+    protected List<Integer> GetAllPossibleTokens() {
         List<Integer> tokens = new ArrayList<>();
         for (int d1 = 0; d1 < _ValidDigits.length; d1++)
             for (int d2 = 0; d2 < _ValidDigits.length; d2++)
