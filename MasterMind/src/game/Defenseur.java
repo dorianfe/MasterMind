@@ -28,7 +28,6 @@ public class Defenseur extends Mode {
             combinaison = convertir(saisir());
             propositionIa = convertir(1122);
             nbEssais = 1;
-            _PossibleTokens = GetAllPossibleTokens();
             System.out.println(Arrays.toString(propositionIa));
             verifCombi(combinaison, propositionIa, 1);
             System.out.println(indice);

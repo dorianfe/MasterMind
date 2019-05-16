@@ -4,14 +4,13 @@ import java.util.*;
 
 public abstract class Mode {
     private Scanner sc = new Scanner(System.in);
-    protected int[] derniereTentative;
     protected int[] combinaison;
     protected int[] propositionIa;
     List<Integer> _PossibleTokens; //combinaisons possibles
-    //List<Integer> tentatives;//liste pour stocker les tentatives mastermind
     int[] _ValidDigits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; //chiffres utilisables
+    String[] _indicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
     protected String indice;
-    //private int turn;
+    private boolean alreadyExecuted;
 
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
@@ -112,10 +111,15 @@ public abstract class Mode {
         } else {
             /*int B = indice.charAt(1);
             int W = indice.charAt(3);*/
+            if (!alreadyExecuted) {
+                _PossibleTokens = GetAllPossibleTokens();
+                alreadyExecuted = true;
+            }
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(_PossibleTokens.get(i));
-                if (verifCombi(token, propositionIa, 1) != indiceIn) { //attention à différencier "indice"
+
+                if (score(verifCombi(token, propositionIa, 1)) < score(indiceIn)) { //attention à différencier "indice"
                     removeAll(_PossibleTokens, i);
                     Random rand = new Random();
                     propositionIa = convertir(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size())));
@@ -164,9 +168,19 @@ public abstract class Mode {
                 remainingElements.add(number);
             }
         }
-
         list.clear();
         list.addAll(remainingElements);
+    }
+
+    private int score(String indiceIn) {
+        int j;
+        int score = 0;
+        for (j = 0; j < _indicesPossibles.length; j++) {
+            if (indiceIn.equals(_indicesPossibles[j])) {
+                score = j;
+            }
+        }
+        return score;
     }
 
     public abstract void run(int gameType);
