@@ -6,7 +6,7 @@ public abstract class Mode {
     private Scanner sc = new Scanner(System.in);
     protected int[] combinaison;
     protected int[] propositionIa;
-    List<Integer> _PossibleTokens; //combinaisons possibles
+    List<String> _PossibleTokens; //combinaisons possibles
     int[] _ValidDigits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; //chiffres utilisables
     String[] _indicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
     protected String indice;
@@ -104,49 +104,37 @@ public abstract class Mode {
                         break;
                 }
             }
-           /* - Si X>A
-                    - Si (9-A)%2 = 0 alors X = X - (9-A)/2  sinon X = X - (9-A)/2 + 1
-                    - Si X<A
-            - Si (9-A)%2 = 0 alors X = X + (9-A)/2  sinon X = X + (9-A)/2 - 1 */
+
         } else {
-            /*int B = indice.charAt(1);
-            int W = indice.charAt(3);*/
+
             if (!alreadyExecuted) {
-                _PossibleTokens = GetAllPossibleTokens();
+                _PossibleTokens = generateCombinations(4, _ValidDigits);
+                System.out.println(_PossibleTokens.size()); //devrait afficher 10000 possibilité, 5000 crées seulement
+                System.out.println(_PossibleTokens.get(2000));
                 alreadyExecuted = true;
             }
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
-                int[] token = convertir(_PossibleTokens.get(i));
-
-                if (score(verifCombi(token, propositionIa, 1)) < score(indiceIn)) { //attention à différencier "indice"
-                    removeAll(_PossibleTokens, i);
+                int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
+                //System.out.println("avant: " + score(verifCombi(token, propositionIa, 1)));
+                //System.out.println("après: " + score(indiceIn));
+                if (score(verifCombi(token, propositionIa, 1)) <= score(indiceIn)) { //attention à différencier "indice"
+                    System.out.println("avant: " + _PossibleTokens.size());
+                    removeAll(_PossibleTokens, _PossibleTokens.get(i));
+                    System.out.println("après: " + _PossibleTokens.size());
                     Random rand = new Random();
-                    propositionIa = convertir(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size())));
+                    propositionIa = convertir((Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size())))));
+
+                } else {
+                    Random rand = new Random(); // voir else avec score ?
+                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
                 }
-                /*switch (B) {
-
-                    case 0:
-                        removeAll(_PossibleTokens, 1);
-                        removeAll(_PossibleTokens, 2);
-                        propositionIa = convertir(3344); // possible d'utiliser replace sur string
-                        tentatives.add(convertir(propositionIa));
-                        break;
-
-                    case 1:
-                        propositionIa[i] = propositionIa[i];
-                        break;
-                    case 2:
-
-
-
-                }*/
             }
         }
         return propositionIa;
     }
 
-    protected List<Integer> GetAllPossibleTokens() {
+    /*protected List<Integer> GetAllPossibleTokens() {
         List<Integer> tokens = new ArrayList<>();
         for (int d1 = 0; d1 < _ValidDigits.length; d1++)
             for (int d2 = 0; d2 < _ValidDigits.length; d2++)
@@ -159,11 +147,38 @@ public abstract class Mode {
                         }
                     }
         return tokens;
+    }*/
+
+    private List<String> generateCombinations(int arraySize, int[] _ValidDigits) {
+        List<String> tokens = new ArrayList<>();
+        int carry;
+        int[] indices = new int[arraySize];
+        do {
+            for (int index : indices)
+                tokens.add(_ValidDigits[index] + "");
+            System.out.println("");
+
+            carry = 1;
+            for (int i = indices.length - 1; i >= 0; i--) {
+                if (carry == 0)
+                    break;
+
+                indices[i] += carry;
+                carry = 0;
+
+                if (indices[i] == _ValidDigits.length) {
+                    carry = 1;
+                    indices[i] = 0;
+                }
+            }
+        }
+        while (carry != 1); // Call this method iteratively until a carry is left over
+        return tokens;
     }
 
-    private void removeAll(List<Integer> list, int element) {
-        List<Integer> remainingElements = new ArrayList<>();
-        for (Integer number : list) {
+    private void removeAll(List<String> list, String element) {
+        List<String> remainingElements = new ArrayList<>();
+        for (String number : list) {
             if (!Objects.equals(number, element)) {
                 remainingElements.add(number);
             }
