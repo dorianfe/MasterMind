@@ -110,7 +110,6 @@ public abstract class Mode {
                 alreadyExecuted = true;
             }
             int i;
-            System.out.println((_PossibleTokens));
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
                 //System.out.println(Arrays.toString(token));
@@ -170,6 +169,7 @@ public abstract class Mode {
             }
             tokens.add(result);
         }
+        System.out.println(tokens);
         return tokens;
     }
 
