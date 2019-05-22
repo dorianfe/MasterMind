@@ -7,7 +7,6 @@ public abstract class Mode {
     protected int[] combinaison;
     protected int[] propositionIa;
     List<String> _PossibleTokens; //combinaisons possibles
-    int[] _ValidDigits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; //chiffres utilisables
     String[] _indicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
     protected String indice;
     private boolean alreadyExecuted;
@@ -108,7 +107,7 @@ public abstract class Mode {
         } else {
 
             if (!alreadyExecuted) {
-                _PossibleTokens = generateCombinations(4, _ValidDigits);
+                _PossibleTokens = generateCombinations();
                 System.out.println(_PossibleTokens.size()); //devrait afficher 10000 possibilité, 5000 crées seulement
                 System.out.println(_PossibleTokens.get(2000));
                 alreadyExecuted = true;
@@ -134,30 +133,13 @@ public abstract class Mode {
         return propositionIa;
     }
 
-    /*protected List<Integer> GetAllPossibleTokens() {
-        List<Integer> tokens = new ArrayList<>();
-        for (int d1 = 0; d1 < _ValidDigits.length; d1++)
-            for (int d2 = 0; d2 < _ValidDigits.length; d2++)
-                for (int d3 = 0; d3 < _ValidDigits.length; d3++)
-                    for (int d4 = 0; d4 < _ValidDigits.length; d4++) {
-                        if (d1 != d2 && d1 != d3 && d1 != d4
-                                && d2 != d3 && d2 != d4
-                                && d3 != d4) {
-                            tokens.add((_ValidDigits[d1] + _ValidDigits[d2] + _ValidDigits[d3] + _ValidDigits[d4]));
-                        }
-                    }
-        return tokens;
-    }*/
-
-    private List<String> generateCombinations(int arraySize, int[] _ValidDigits) {
+    /*private List<String> generateCombinations(int arraySize, int[] _ValidDigits) {
         List<String> tokens = new ArrayList<>();
         int carry;
         int[] indices = new int[arraySize];
         do {
             for (int index : indices)
                 tokens.add(_ValidDigits[index] + "");
-            System.out.println("");
-
             carry = 1;
             for (int i = indices.length - 1; i >= 0; i--) {
                 if (carry == 0)
@@ -173,6 +155,22 @@ public abstract class Mode {
             }
         }
         while (carry != 1); // Call this method iteratively until a carry is left over
+        return tokens;
+    }*/
+
+    private List<String> generateCombinations() {
+        List<String> tokens = new ArrayList<>();
+        for (int i = 9999; i >= 0; i--) {
+            String result = "" + i;
+            for (int c = 0; c < 4; c++) {
+                if (result.length() < 4) {
+                    result = "0" + result;
+                }
+            }
+            tokens.add(result);
+            System.out.println(result);
+
+        }
         return tokens;
     }
 
