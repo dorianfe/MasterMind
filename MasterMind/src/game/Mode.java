@@ -118,9 +118,9 @@ public abstract class Mode {
                 //System.out.println("avant: " + score(verifCombi(token, propositionIa, 1)));
                 //System.out.println("après: " + score(indiceIn));
                 if (score(verifCombi(token, propositionIa, 1)) <= score(indiceIn)) { //attention à différencier "indice"
-                    System.out.println("avant: " + _PossibleTokens.size());
+                    //System.out.println("avant: " + _PossibleTokens.size());
                     removeAll(_PossibleTokens, _PossibleTokens.get(i));
-                    System.out.println("après: " + _PossibleTokens.size());
+                    //System.out.println("après: " + _PossibleTokens.size());
                     Random rand = new Random();
                     propositionIa = convertir((Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size())))));
 
@@ -168,8 +168,6 @@ public abstract class Mode {
                 }
             }
             tokens.add(result);
-            System.out.println(result);
-
         }
         return tokens;
     }
