@@ -9,7 +9,7 @@ public abstract class Mode {
     List<String> _PossibleTokens; //combinaisons possibles
     String[] _indicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
     protected String indice;
-    private boolean alreadyExecuted;
+    protected boolean alreadyExecuted;
 
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
@@ -105,31 +105,32 @@ public abstract class Mode {
             }
 
         } else {
-
             if (!alreadyExecuted) {
                 _PossibleTokens = generateCombinations();
-                System.out.println(_PossibleTokens.size()); //devrait afficher 10000 possibilité, 5000 crées seulement
-                System.out.println(_PossibleTokens.get(2000));
                 alreadyExecuted = true;
             }
             int i;
+            System.out.println((_PossibleTokens));
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
+                //System.out.println(Arrays.toString(token));
                 //System.out.println("avant: " + score(verifCombi(token, propositionIa, 1)));
                 //System.out.println("après: " + score(indiceIn));
                 if (score(verifCombi(token, propositionIa, 1)) <= score(indiceIn)) { //attention à différencier "indice"
                     //System.out.println("avant: " + _PossibleTokens.size());
-                    removeAll(_PossibleTokens, _PossibleTokens.get(i));
+                    _PossibleTokens.remove(i);
+                    //removeAll(_PossibleTokens, _PossibleTokens.get(i));
                     //System.out.println("après: " + _PossibleTokens.size());
                     Random rand = new Random();
                     propositionIa = convertir((Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size())))));
-
                 } else {
-                    Random rand = new Random(); // voir else avec score ?
-                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
+                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(i)));
+                    /*Random rand = new Random(); // voir else avec score ? ou proposer token ?
+                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));*/
                 }
             }
         }
+
         return propositionIa;
     }
 
@@ -158,7 +159,7 @@ public abstract class Mode {
         return tokens;
     }*/
 
-    private List<String> generateCombinations() {
+    protected List<String> generateCombinations() {
         List<String> tokens = new ArrayList<>();
         for (int i = 9999; i >= 0; i--) {
             String result = "" + i;
@@ -182,6 +183,8 @@ public abstract class Mode {
         list.clear();
         list.addAll(remainingElements);
     }
+
+
 
     private int score(String indiceIn) {
         int j;
