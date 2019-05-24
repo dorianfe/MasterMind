@@ -125,7 +125,15 @@ public abstract class Mode {
                     propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));*/
                 }
             }
-            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));
+            int B = indiceIn.charAt(1);
+            int W = indiceIn.charAt(3);
+            //_LastTry.add(Arrays.toString(propositionIa));
+            if(_PossibleTokens.size() <= 2){
+                propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(0)));
+            } else {
+                propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));
+            }
+
 
         }
         /*if (score(indiceIn) == 0) {
