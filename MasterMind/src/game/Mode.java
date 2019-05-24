@@ -125,12 +125,16 @@ public abstract class Mode {
                     propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));*/
                 }
             }
-            int B = indiceIn.charAt(2);
-            if (B == 0) {
-                int j;
-                for (j = 0; j < 4; j++) {
+            char B = indiceIn.charAt(1);
 
-                    removeAll(_PossibleTokens, Arrays.toString(propositionIa));
+            System.out.println(B);
+            System.out.println(indiceIn);
+            if ('0' == B) {
+                List<String> possibleTemp = _PossibleTokens;
+                for (String possibility : possibleTemp) {
+
+                    boolean resultat = containsChar(possibility, propositionIa);
+                    System.out.println(resultat);
                 }
 
             }
@@ -151,6 +155,25 @@ public abstract class Mode {
         }*/
 
         return propositionIa;
+    }
+
+    private boolean containsChar(String possiblity, int[] propositionIa) {
+        int c;
+        String propoString = Integer.toString(convertir(propositionIa));
+        System.out.println(propoString);
+
+        for (c = 0; c < propoString.length(); c++) {
+            char p = propoString.charAt(c);
+            if (possiblity.indexOf(p) >= 0) {
+                System.out.println(p);
+                removeAll(_PossibleTokens, possiblity);
+                return true;
+
+            }
+
+        }
+
+        return false;
     }
 
 
