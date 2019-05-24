@@ -32,6 +32,12 @@ public class Defenseur extends Mode {
             verifCombi(combinaison, propositionIa, 1);
             System.out.println(indice);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 10) {
+                if(!alreadyExecuted){
+                    propositionIa = convertir(3344);
+                    System.out.println(Arrays.toString(propositionIa));
+                    nbEssais++;
+                    verifCombi(combinaison, propositionIa, 1);
+                }
                 verifCombi(combinaison, computerTest(indice, 1), 1);
                 nbEssais++;
                 System.out.println(Arrays.toString(propositionIa) + indice);

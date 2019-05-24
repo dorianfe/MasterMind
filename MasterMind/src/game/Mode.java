@@ -112,7 +112,6 @@ public abstract class Mode {
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
-                //System.out.println(Arrays.toString(token));
                 //System.out.println("avant: " + score(verifCombi(token, propositionIa, 1)));
                 //System.out.println("après: " + score(indiceIn));
                 if (score(verifCombi(token, propositionIa, 1)) <= score(indiceIn)) { //attention à différencier "indice"
@@ -121,11 +120,19 @@ public abstract class Mode {
                     //removeAll(_PossibleTokens, _PossibleTokens.get(i));
                     //System.out.println("après: " + _PossibleTokens.size());
                     Random rand = new Random();
-                    propositionIa = convertir((Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size())))));
+                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
                 } else {
-                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(i)));
-                    /*Random rand = new Random(); // voir else avec score ? ou proposer token ?
-                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));*/
+                    Random rand = new Random();
+                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
+                }
+            }
+        }
+        if (score(indiceIn) == 0) {
+            int j;
+            for (j = 0; j < 4; j++) {
+                propositionIa[j] = propositionIa[j] + 1;
+                if (propositionIa[j] > 9) {
+                    propositionIa[j] = 9;
                 }
             }
         }
@@ -169,7 +176,7 @@ public abstract class Mode {
             }
             tokens.add(result);
         }
-        System.out.println(tokens);
+        //System.out.println(tokens);
         return tokens;
     }
 
@@ -183,7 +190,6 @@ public abstract class Mode {
         list.clear();
         list.addAll(remainingElements);
     }
-
 
 
     private int score(String indiceIn) {
