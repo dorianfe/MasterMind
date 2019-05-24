@@ -26,7 +26,7 @@ public class Defenseur extends Mode {
             System.out.println("---");
             System.out.println("sasir code:");
             combinaison = convertir(saisir());
-            propositionIa = convertir(4567);
+            propositionIa = convertir(0123);
             nbEssais = 1;
             System.out.println(Arrays.toString(propositionIa));
             verifCombi(combinaison, propositionIa, 1);
