@@ -9,6 +9,7 @@ public abstract class Mode {
     List<String> _PossibleTokens; //combinaisons possibles
     String[] _indicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
     protected String indice;
+    List<String> _LastTry;
     protected boolean alreadyExecuted;
 
 
@@ -114,20 +115,20 @@ public abstract class Mode {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
                 //System.out.println("avant: " + score(verifCombi(token, propositionIa, 1)));
                 //System.out.println("après: " + score(indiceIn));
-                if (score(verifCombi(token, propositionIa, 1)) <= score(indiceIn)) { //attention à différencier "indice"
+                if (score(verifCombi(token, propositionIa, 1)) != score(indiceIn)) { //attention à différencier "indice"
                     //System.out.println("avant: " + _PossibleTokens.size());
                     _PossibleTokens.remove(i);
                     //removeAll(_PossibleTokens, _PossibleTokens.get(i));
                     //System.out.println("après: " + _PossibleTokens.size());
-                    Random rand = new Random();
-                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
-                } else {
-                    Random rand = new Random();
-                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
+
+                /*} else {
+                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));*/
                 }
             }
+            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));
+
         }
-        if (score(indiceIn) == 0) {
+        /*if (score(indiceIn) == 0) {
             int j;
             for (j = 0; j < 4; j++) {
                 propositionIa[j] = propositionIa[j] + 1;
@@ -135,35 +136,12 @@ public abstract class Mode {
                     propositionIa[j] = 9;
                 }
             }
-        }
+        }*/
 
         return propositionIa;
     }
 
-    /*private List<String> generateCombinations(int arraySize, int[] _ValidDigits) {
-        List<String> tokens = new ArrayList<>();
-        int carry;
-        int[] indices = new int[arraySize];
-        do {
-            for (int index : indices)
-                tokens.add(_ValidDigits[index] + "");
-            carry = 1;
-            for (int i = indices.length - 1; i >= 0; i--) {
-                if (carry == 0)
-                    break;
 
-                indices[i] += carry;
-                carry = 0;
-
-                if (indices[i] == _ValidDigits.length) {
-                    carry = 1;
-                    indices[i] = 0;
-                }
-            }
-        }
-        while (carry != 1); // Call this method iteratively until a carry is left over
-        return tokens;
-    }*/
 
     protected List<String> generateCombinations() {
         List<String> tokens = new ArrayList<>();
