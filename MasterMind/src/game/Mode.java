@@ -166,7 +166,8 @@ public abstract class Mode {
             char p = propoString.charAt(c);
             if (possiblity.indexOf(p) >= 0) {
                 System.out.println(p);
-                removeAll(_PossibleTokens, possiblity);
+                //removeAll(_PossibleTokens, possiblity);
+                _PossibleTokens.remove(possiblity);
                 return true;
 
             }
