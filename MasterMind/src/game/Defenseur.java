@@ -40,7 +40,7 @@ public class Defenseur extends Mode {
                 }*/
                 verifCombi(combinaison, computerTest(indice, 1), 1);
                 nbEssais++;
-                System.out.println(Arrays.toString(propositionIa) + indice);
+                System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
 
             }
         }

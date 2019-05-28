@@ -125,18 +125,22 @@ public abstract class Mode {
                     propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));*/
                 }
             }
-            char B = indiceIn.charAt(1);
-
-            System.out.println(B);
-            System.out.println(indiceIn);
-            if ('0' == B) {
-                List<String> possibleTemp = _PossibleTokens;
-                for (String possibility : possibleTemp) {
-
-                    boolean resultat = containsChar(possibility, propositionIa);
-                    System.out.println(resultat);
+            //char B = indiceIn.charAt(1);
+            //char W = indiceIn.charAt(3);
+            if (indiceIn.equals("B0W0")) {
+                int c;
+                for (c = 0; c < 4; c++) {
+                    String e = Integer.toString(propositionIa[c]);
+                    System.out.println(e);
+                    _PossibleTokens.removeAll(Collections.singleton(e));
                 }
 
+
+                //List<String> possibleTemp = _PossibleTokens;
+                //for (String possibility : possibleTemp) {
+
+                //  boolean resultat = containsChar(possibility, propositionIa);
+                //System.out.println(resultat);
             }
             if (_PossibleTokens.size() <= 2) {
                 propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(0)));
@@ -144,18 +148,10 @@ public abstract class Mode {
                 propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));
             }
         }
-        /*if (score(indiceIn) == 0) {
-            int j;
-            for (j = 0; j < 4; j++) {
-                propositionIa[j] = propositionIa[j] + 1;
-                if (propositionIa[j] > 9) {
-                    propositionIa[j] = 9;
-                }
-            }
-        }*/
 
         return propositionIa;
     }
+
 
     private boolean containsChar(String possiblity, int[] propositionIa) {
         int c;
