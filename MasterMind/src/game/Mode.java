@@ -104,7 +104,6 @@ public abstract class Mode {
                         break;
                 }
             }
-
         } else {
             if (!alreadyExecuted) {
                 _PossibleTokens = generateCombinations();
@@ -113,42 +112,24 @@ public abstract class Mode {
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
-                //System.out.println("avant: " + score(verifCombi(token, propositionIa, 1)));
-                //System.out.println("après: " + score(indiceIn));
                 if (score(verifCombi(token, propositionIa, 1)) != score(indiceIn)) { //attention à différencier "indice"
-                    //System.out.println("avant: " + _PossibleTokens.size());
                     _PossibleTokens.remove(i);
-                    //removeAll(_PossibleTokens, _PossibleTokens.get(i));
-                    //System.out.println("après: " + _PossibleTokens.size());
-
-                /*} else {
-                    propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));*/
                 }
             }
-            //char B = indiceIn.charAt(1);
-            //char W = indiceIn.charAt(3);
             if (indiceIn.equals("B0W0")) {
                 int c;
                 for (c = 0; c < 4; c++) {
                     String e = Integer.toString(propositionIa[c]);
-                    System.out.println(e);
-                    _PossibleTokens.removeAll(Collections.singleton(e));
+                    int d;
+                    for (d = 0; d < _PossibleTokens.size(); d++) {
+                        if (_PossibleTokens.get(d).indexOf(e) >= 0) {
+                            _PossibleTokens.remove(d--);
+                        }
+                    }
                 }
-
-
-                //List<String> possibleTemp = _PossibleTokens;
-                //for (String possibility : possibleTemp) {
-
-                //  boolean resultat = containsChar(possibility, propositionIa);
-                //System.out.println(resultat);
             }
-            if (_PossibleTokens.size() <= 2) {
-                propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(0)));
-            } else {
-                propositionIa = convertir(Integer.parseInt(_PossibleTokens.get((_PossibleTokens.size() / 2) + 1)));
-            }
+            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(0)));
         }
-
         return propositionIa;
     }
 
@@ -185,7 +166,6 @@ public abstract class Mode {
             }
             tokens.add(result);
         }
-        //System.out.println(tokens);
         return tokens;
     }
 

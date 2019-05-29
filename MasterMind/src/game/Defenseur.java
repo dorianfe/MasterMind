@@ -26,11 +26,10 @@ public class Defenseur extends Mode {
             System.out.println("---");
             System.out.println("sasir code:");
             combinaison = convertir(saisir());
-            propositionIa = convertir(0123);
+            propositionIa = convertir(5678);
             nbEssais = 1;
-            System.out.println(Arrays.toString(propositionIa));
             verifCombi(combinaison, propositionIa, 1);
-            System.out.println(indice);
+            System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 100) {
                 /*if(!alreadyExecuted){
                     propositionIa = convertir(3344);
