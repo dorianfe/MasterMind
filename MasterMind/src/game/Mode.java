@@ -9,9 +9,8 @@ public abstract class Mode {
     List<String> _PossibleTokens; //combinaisons possibles
     String[] _indicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
     protected String indice;
-    List<String> _LastTry;
     protected boolean alreadyExecuted;
-
+    protected int nbEssais;
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
         int[] retVal = new int[4];
@@ -70,7 +69,6 @@ public abstract class Mode {
         return indice;
     }
 
-
     protected int saisir() { // try catch
         int x = sc.nextInt();
         return x;
@@ -112,7 +110,7 @@ public abstract class Mode {
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
-                if (score(verifCombi(token, propositionIa, 1)) != score(indiceIn)) { //attention à différencier "indice"
+                if (score(verifCombi(token, propositionIa, 1)) != score(indiceIn)) {
                     _PossibleTokens.remove(i);
                 }
             }
@@ -138,11 +136,15 @@ public abstract class Mode {
                     }
                 }
             }
-            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(0)));
+            if(nbEssais == 2){
+                // faire une proposition impossible pour éliminer plus tôt
+            }
+            Random rand = new Random();
+            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
+            //propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(_PossibleTokens.size()/2-1)));
         }
         return propositionIa;
     }
-
 
     private boolean containsChar(String possiblity, int[] propositionIa) {
         int c;
@@ -163,7 +165,6 @@ public abstract class Mode {
 
         return false;
     }
-
 
     protected List<String> generateCombinations() {
         List<String> tokens = new ArrayList<>();
@@ -189,7 +190,6 @@ public abstract class Mode {
         list.clear();
         list.addAll(remainingElements);
     }
-
 
     private int score(String indiceIn) {
         int j;

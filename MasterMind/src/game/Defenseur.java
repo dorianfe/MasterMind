@@ -3,7 +3,7 @@ package game;
 import java.util.Arrays;
 
 public class Defenseur extends Mode {
-    private int nbEssais;
+
 
     @Override
     public void run(int gameType) {
@@ -31,12 +31,12 @@ public class Defenseur extends Mode {
             verifCombi(combinaison, propositionIa, 1);
             System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 100) {
-                /*if(!alreadyExecuted){
-                    propositionIa = convertir(3344);
-                    System.out.println(Arrays.toString(propositionIa));
+                if(!alreadyExecuted){
+                    propositionIa = convertir(9012);
                     nbEssais++;
+                    System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
                     verifCombi(combinaison, propositionIa, 1);
-                }*/
+                }
                 verifCombi(combinaison, computerTest(indice, 1), 1);
                 nbEssais++;
                 System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
