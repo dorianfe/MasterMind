@@ -116,13 +116,23 @@ public abstract class Mode {
                     _PossibleTokens.remove(i);
                 }
             }
+            int c;
+            int d;
             if (indiceIn.equals("B0W0")) {
-                int c;
                 for (c = 0; c < 4; c++) {
                     String e = Integer.toString(propositionIa[c]);
-                    int d;
                     for (d = 0; d < _PossibleTokens.size(); d++) {
                         if (_PossibleTokens.get(d).indexOf(e) >= 0) {
+                            _PossibleTokens.remove(d--);
+                        }
+                    }
+                }
+            } else if (score(indiceIn) >= 1 && score(indiceIn) <= 4) { //si mal placés uniquement
+                for (c = 0; c < 4; c++) {
+                    String e = Integer.toString(propositionIa[c]);
+                    for (d = 0; d < _PossibleTokens.size(); d++) {
+                        char w = _PossibleTokens.get(d).charAt(c);
+                        if (e.equals(Character.toString(w))) {
                             _PossibleTokens.remove(d--);
                         }
                     }
