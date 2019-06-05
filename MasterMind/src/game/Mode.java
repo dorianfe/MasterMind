@@ -6,8 +6,9 @@ public abstract class Mode {
     private Scanner sc = new Scanner(System.in);
     protected int[] combinaison;
     protected int[] propositionIa;
-    List<String> _PossibleTokens; //combinaisons possibles
-    String[] _indicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
+    protected List<String> _PossibleTokens; //combinaisons possibles
+    protected String[] _IndicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
+    protected List<Integer> _LastIndice;
     protected String indice;
     protected boolean alreadyExecuted;
     protected int nbEssais;
@@ -107,6 +108,7 @@ public abstract class Mode {
                 _PossibleTokens = generateCombinations();
                 alreadyExecuted = true;
             }
+
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
@@ -136,8 +138,19 @@ public abstract class Mode {
                     }
                 }
             }
-            if(nbEssais == 2){
-                // faire une proposition impossible pour éliminer plus tôt
+            if (nbEssais <= 4 && nbEssais != 1) {
+                int o = _LastIndice.indexOf(0);
+                if (o == -1) {
+                    int j;
+                    for (j = 0; j < _PossibleTokens.size(); j++) {
+                        int[] token = convertir(Integer.parseInt(_PossibleTokens.get(j)));
+                        if (score(verifCombi(token, propositionIa, 1)) == score(indiceIn)) {
+                            propositionIa = token;
+
+                            return propositionIa;
+                        }
+                    }
+                }
             }
             Random rand = new Random();
             propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
@@ -191,11 +204,11 @@ public abstract class Mode {
         list.addAll(remainingElements);
     }
 
-    private int score(String indiceIn) {
+    protected int score(String indiceIn) {
         int j;
         int score = 0;
-        for (j = 0; j < _indicesPossibles.length; j++) {
-            if (indiceIn.equals(_indicesPossibles[j])) {
+        for (j = 0; j < _IndicesPossibles.length; j++) {
+            if (indiceIn.equals(_IndicesPossibles[j])) {
                 score = j;
             }
         }
