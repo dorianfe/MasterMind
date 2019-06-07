@@ -30,7 +30,7 @@ public class Defenseur extends Mode {
             nbEssais = 1;
             verifCombi(combinaison, propositionIa, 1);
             System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
-            while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 100) {
+            while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 12) {
                 /*if(!alreadyExecuted){
                     propositionIa = convertir(2233);
                     nbEssais++;

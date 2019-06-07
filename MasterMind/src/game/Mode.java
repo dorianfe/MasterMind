@@ -8,7 +8,7 @@ public abstract class Mode {
     protected int[] propositionIa;
     protected List<String> _PossibleTokens; //combinaisons possibles
     protected String[] _IndicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
-    protected List<Integer> _LastIndice;
+    protected List<Integer> _LastIndice = new ArrayList<>();
     protected String indice;
     protected boolean alreadyExecuted;
     protected int nbEssais;
@@ -138,7 +138,7 @@ public abstract class Mode {
                     }
                 }
             }
-            if (nbEssais <= 4 && nbEssais != 1) {
+            /*if (nbEssais <= 4 && nbEssais != 1) {
                 int o = _LastIndice.indexOf(0);
                 if (o == -1) {
                     int j;
@@ -151,7 +151,7 @@ public abstract class Mode {
                         }
                     }
                 }
-            }
+            }*/
             Random rand = new Random();
             propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
             //propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(_PossibleTokens.size()/2-1)));
