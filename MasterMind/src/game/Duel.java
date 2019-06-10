@@ -3,7 +3,6 @@ package game;
 import java.util.Arrays;
 
 public class Duel extends Mode {
-    private int nbEssais = 0;
     private boolean alreadyExecuted;
     private int[] propositionHum;
     private int[] propositionIaFinale;
@@ -44,7 +43,35 @@ public class Duel extends Mode {
                 System.out.println("--");
             }
         } else {
-            System.out.println("---");
+            combinaison = convertir(rdmProposition());
+            do {
+                System.out.println("Joueur Humain, faites une proposition");
+                propositionHum = convertir(saisir());
+                nbEssais++;
+                verifCombi(combinaison, propositionHum, 1);
+                System.out.println(Arrays.toString(propositionHum) + "indice : " + indice + " Essais: " + nbEssais);
+                if (!alreadyExecuted) {
+                    propositionIa = convertir(1122);
+                    alreadyExecuted = true;
+                    verifCombi(combinaison, propositionIa, 1);
+                    indiceIa = indice;
+                    System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
+                } else {
+                    verifCombi(combinaison, computerTest(indiceIa, 1), 1);
+                    indiceIa = indice;
+                    System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
+                    propositionIaFinale = propositionIa;
+                }
+            } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum) && nbEssais <= 12);
+            if (convertir(propositionIaFinale) == convertir(propositionHum)) {
+                System.out.println("ex-aequo!");
+            } else if (convertir(combinaison) == convertir(propositionIaFinale)) {
+                System.out.println("Victoire IA!");
+            } else if (convertir(combinaison) == convertir(propositionHum)) {
+                System.out.println("Victoire joueur humain!");
+            } else {
+                System.out.println("Nombre maximum de coups atteint !");
+            }
         }
     }
 }

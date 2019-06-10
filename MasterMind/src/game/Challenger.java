@@ -28,7 +28,7 @@ public class Challenger extends Mode {
 
         }else {
             System.out.println("-----------");
-            combinaison = convertir(rdmProposition());
+            combinaison = convertir(5225);
             nbEssais = 0;
             do {
                 System.out.println("Faites une proposition");

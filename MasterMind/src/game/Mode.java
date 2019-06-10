@@ -55,12 +55,15 @@ public abstract class Mode {
             } else {
                 indice = indice + "+";
             }
-            for (int j = 0; j < proposition.length; j++) {
-                if (combinaison[i] == proposition[j] && combinaison[i] != proposition[i]) {
-                    W++;
-                    break;
+            if (combinaison[i] != proposition[i]) {
+                for (int j = 0; j < proposition.length; j++) {
+
+                    if (combinaison[i] == proposition[j] && i != j) {
+                        W++;
+                    }
                 }
             }
+
         }
         if (gameType == 0) { //0 = PlusMoins
             return indice;
@@ -157,26 +160,6 @@ public abstract class Mode {
             //propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(_PossibleTokens.size()/2-1)));
         }
         return propositionIa;
-    }
-
-    private boolean containsChar(String possiblity, int[] propositionIa) {
-        int c;
-        String propoString = Integer.toString(convertir(propositionIa));
-        System.out.println(propoString);
-
-        for (c = 0; c < propoString.length(); c++) {
-            char p = propoString.charAt(c);
-            if (possiblity.indexOf(p) >= 0) {
-                System.out.println(p);
-                //removeAll(_PossibleTokens, possiblity);
-                _PossibleTokens.remove(possiblity);
-                return true;
-
-            }
-
-        }
-
-        return false;
     }
 
     protected List<String> generateCombinations() {
