@@ -46,25 +46,28 @@ public abstract class Mode {
         int B = 0;
         int W = 0;
         indice = "";
+        int[] indiceB = new int[4];
         for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] < proposition[i]) {
                 indice = indice + "-";
             } else if (combinaison[i] == proposition[i]) {
                 indice = indice + "=";
                 B++;
+                indiceB[i] = i;
             } else {
                 indice = indice + "+";
             }
+        }
+        for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] != proposition[i]) {
                 for (int j = 0; j < proposition.length; j++) {
-
-                    if (combinaison[i] == proposition[j] && i != j) {
+                    if (i != j && j != indiceB[j] && combinaison[i] == proposition[j]) {
                         W++;
                     }
                 }
             }
-
         }
+
         if (gameType == 0) { //0 = PlusMoins
             return indice;
         } else {
