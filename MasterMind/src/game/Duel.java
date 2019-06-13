@@ -12,15 +12,15 @@ public class Duel extends Mode {
     public void run(int gameType) {
         codeSize();
         if (gameType == 0) {
-            combinaison = convertir(rdmProposition(codeSize));
+            combinaison = convertir(rdmProposition(codeSize), codeSize);
             do {
                 System.out.println("Joueur Humain, faites une proposition");
-                propositionHum = convertir(saisir());
+                propositionHum = convertir(saisir(), codeSize);
                 nbEssais++;
                 verifCombi(combinaison, propositionHum, 0, codeSize);
                 System.out.println(Arrays.toString(propositionHum) + "indice : " + indice + " Essais: " + nbEssais);
                 if (!alreadyExecuted) {
-                    propositionIa = convertir(propositionInit(codeSize));
+                    propositionIa = convertir(propositionInit(codeSize), codeSize);
                     alreadyExecuted = true;
                     verifCombi(combinaison, propositionIa, 0, codeSize);
                     indiceIa = indice;
@@ -44,17 +44,17 @@ public class Duel extends Mode {
                 System.out.println("--");
             }
         } else {
-            combinaison = convertir(rdmProposition(codeSize));
+            combinaison = convertir(rdmProposition(codeSize), codeSize);
             do {
                 System.out.println("Joueur Humain, faites une proposition");
-                propositionHum = convertir(saisir());
+                propositionHum = convertir(saisir(), codeSize);
                 nbEssais++;
                 verifCombi(combinaison, propositionHum, 1, codeSize);
                 System.out.println(Arrays.toString(propositionHum) + "indice : " + indice + " Essais: " + nbEssais);
                 if (!alreadyExecuted) {
-                    propositionIa = convertir(1122);
+                    propositionIa = convertir(propositionInit(codeSize), codeSize);
                     alreadyExecuted = true;
-                    verifCombi(combinaison, propositionIa, 1, 4);
+                    verifCombi(combinaison, propositionIa, 1, codeSize);
                     indiceIa = indice;
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                 } else {

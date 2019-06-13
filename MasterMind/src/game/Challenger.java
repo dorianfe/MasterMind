@@ -11,11 +11,11 @@ public class Challenger extends Mode {
     public void run(int gameType) {
         codeSize();
         if (gameType == 0) {
-            combinaison = convertir(rdmProposition(codeSize));
+            combinaison = convertir(rdmProposition(codeSize), codeSize);
             nbEssais = 0;
             do {
                 System.out.println("Faites une proposition");
-                proposition = convertir(saisir());
+                proposition = convertir(saisir(), codeSize);
                 nbEssais++;
                 verifCombi(combinaison, proposition, 0, codeSize);
                 //System.out.println(Arrays.toString(proposition) + "indice : " + indice + " essais: " + nbEssais);
@@ -29,11 +29,11 @@ public class Challenger extends Mode {
 
         }else {
             System.out.println("-----------");
-            combinaison = convertir(5225);
+            combinaison = convertir(rdmProposition(codeSize), codeSize);
             nbEssais = 0;
             do {
                 System.out.println("Faites une proposition");
-                proposition = convertir(saisir());
+                proposition = convertir(saisir(), codeSize);
                 nbEssais++;
                 verifCombi(combinaison, proposition,1, codeSize);
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(proposition));

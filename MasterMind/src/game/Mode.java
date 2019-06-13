@@ -16,15 +16,15 @@ public abstract class Mode {
 
     protected int codeSize() {
         System.out.println("Veuillez saisir la taille du code secret par un chiffre compris en 4 et 6: ");
-        int codeSize = saisir();
-        if (codeSize < 4 && codeSize > 6){
+        codeSize = saisir();
+        if (codeSize < 4 && codeSize > 6) {
             System.out.println("Entrée non valide, veuillez resaisir la taille du code secret, comprise entre 4 et 6 chiffres");
             codeSize = saisir();
         }
         return codeSize;
     }
 
-    protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
+    protected int[] convertir(int nb, int codeSize) {  //méthode servant à convertir les int en int[]
         int[] retVal = new int[codeSize];
         int i = codeSize - 1;
         while (nb != 0) {
@@ -138,8 +138,8 @@ public abstract class Mode {
 
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
-                int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
-                if (score(verifCombi(token, propositionIa, 1, 4)) != score(indiceIn)) {
+                int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)), codeSize);
+                if (score(verifCombi(token, propositionIa, 1, codeSize)) != score(indiceIn)) {
                     _PossibleTokens.remove(i);
                 }
             }
@@ -179,8 +179,8 @@ public abstract class Mode {
                     }
                 }
             }*/
-            Random rand = new Random();
-            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
+            Random rand = new Random(); // bound must be positive
+            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))), codeSize);
             //propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(_PossibleTokens.size()/2-1)));
         }
         return propositionIa;

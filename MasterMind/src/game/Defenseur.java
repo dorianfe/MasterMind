@@ -10,9 +10,9 @@ public class Defenseur extends Mode {
         codeSize();
         if (gameType == 0) {
             System.out.println("sasir code:");
-            combinaison = convertir(saisir());
+            combinaison = convertir(saisir(), codeSize);
             nbEssais = 1;
-            propositionIa = convertir(propositionInit(codeSize));
+            propositionIa = convertir(propositionInit(codeSize), codeSize);
             System.out.println((" essais: " + nbEssais + " proposition ") + Arrays.toString(propositionIa));
             verifCombi(combinaison, propositionIa, 0, 4);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 10) {
@@ -26,8 +26,8 @@ public class Defenseur extends Mode {
         } else {
             System.out.println("---");
             System.out.println("sasir code:");
-            combinaison = convertir(saisir());
-            propositionIa = convertir(1100);
+            combinaison = convertir(saisir(), codeSize);
+            propositionIa = convertir(propositionInit(codeSize), codeSize);
             nbEssais = 1;
             verifCombi(combinaison, propositionIa, 1, codeSize);
             System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
