@@ -9,14 +9,15 @@ public class Challenger extends Mode {
 
     @Override
     public void run(int gameType) {
+        codeSize();
         if (gameType == 0) {
-            combinaison = convertir(rdmProposition());
+            combinaison = convertir(rdmProposition(codeSize));
             nbEssais = 0;
             do {
                 System.out.println("Faites une proposition");
                 proposition = convertir(saisir());
                 nbEssais++;
-                verifCombi(combinaison, proposition, 0);
+                verifCombi(combinaison, proposition, 0, codeSize);
                 //System.out.println(Arrays.toString(proposition) + "indice : " + indice + " essais: " + nbEssais);
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(proposition));
                 if (nbEssais == 10){
@@ -34,7 +35,7 @@ public class Challenger extends Mode {
                 System.out.println("Faites une proposition");
                 proposition = convertir(saisir());
                 nbEssais++;
-                verifCombi(combinaison, proposition,1);
+                verifCombi(combinaison, proposition,1, codeSize);
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(proposition));
                 if (nbEssais == 10){
                     System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));

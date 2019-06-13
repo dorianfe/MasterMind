@@ -12,10 +12,21 @@ public abstract class Mode {
     protected String indice;
     protected boolean alreadyExecuted;
     protected int nbEssais;
+    protected int codeSize;
+
+    protected int codeSize() {
+        System.out.println("Veuillez saisir la taille du code secret par un chiffre compris en 4 et 6: ");
+        int codeSize = saisir();
+        if (codeSize < 4 && codeSize > 6){
+            System.out.println("Entrée non valide, veuillez resaisir la taille du code secret, comprise entre 4 et 6 chiffres");
+            codeSize = saisir();
+        }
+        return codeSize;
+    }
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
-        int[] retVal = new int[4];
-        int i = 3;
+        int[] retVal = new int[codeSize];
+        int i = codeSize - 1;
         while (nb != 0) {
             int reste = nb % 10;
             retVal[i] = reste;
@@ -40,13 +51,13 @@ public abstract class Mode {
         return result;
     }
 
-    protected String verifCombi(int[] combinaison, int[] proposition, int gameType) {
+    protected String verifCombi(int[] combinaison, int[] proposition, int gameType, int codeSize) {
         //gameType = PlusMoins ou Mastermind
         // blackPeg (B) = bien placé  -- whitePeg (W) = mal placé mais présent
         int B = 0;
         int W = 0;
         indice = "";
-        int[] indiceB = new int[4];
+        int[] indiceB = new int[codeSize];
         for (int i = 0; i < combinaison.length; i++) {
             if (combinaison[i] < proposition[i]) {
                 indice = indice + "-";
@@ -81,21 +92,31 @@ public abstract class Mode {
         return x;
     }
 
-    protected int rdmProposition() {
-        double rdmProposition = Math.random() * 9999;
+    protected int rdmProposition(int codeSize) {
+        double rdmProposition = Math.random() * ((10 ^ codeSize) - 1);
         return (int) rdmProposition;
 
     }
 
-    protected int propositionInit() {
+    protected int propositionInit(int codeSize) {
         double propositionInit = 4444;
+        switch (codeSize) {
+            case 4:
+                propositionInit = 4444;
+                break;
+            case 5:
+                propositionInit = 44444;
+                break;
+            case 6:
+                propositionInit = 444444;
+        }
         return (int) propositionInit;
     }
 
-    protected int[] computerTest(String indiceIn, int gameType) {
+    protected int[] computerTest(String indiceIn, int gameType, int codeSize) {
         if (gameType == 0) {
             int i;
-            for (i = 0; i < 4; i++) {
+            for (i = 0; i < codeSize; i++) {
                 char plusMoins = indiceIn.charAt(i);
                 switch (plusMoins) {
                     case '=':
@@ -111,21 +132,21 @@ public abstract class Mode {
             }
         } else {
             if (!alreadyExecuted) {
-                _PossibleTokens = generateCombinations();
+                _PossibleTokens = generateCombinations(codeSize);
                 alreadyExecuted = true;
             }
 
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
-                if (score(verifCombi(token, propositionIa, 1)) != score(indiceIn)) {
+                if (score(verifCombi(token, propositionIa, 1, 4)) != score(indiceIn)) {
                     _PossibleTokens.remove(i);
                 }
             }
             int c;
             int d;
             if (indiceIn.equals("B0W0")) {
-                for (c = 0; c < 4; c++) {
+                for (c = 0; c < codeSize; c++) {
                     String e = Integer.toString(propositionIa[c]);
                     for (d = 0; d < _PossibleTokens.size(); d++) {
                         if (_PossibleTokens.get(d).indexOf(e) >= 0) {
@@ -134,7 +155,7 @@ public abstract class Mode {
                     }
                 }
             } else if (score(indiceIn) >= 1 && score(indiceIn) <= 4) { //si mal placés uniquement
-                for (c = 0; c < 4; c++) {
+                for (c = 0; c < codeSize; c++) {
                     String e = Integer.toString(propositionIa[c]);
                     for (d = 0; d < _PossibleTokens.size(); d++) {
                         char w = _PossibleTokens.get(d).charAt(c);
@@ -165,9 +186,10 @@ public abstract class Mode {
         return propositionIa;
     }
 
-    protected List<String> generateCombinations() {
+    protected List<String> generateCombinations(int codeSize) {
         List<String> tokens = new ArrayList<>();
-        for (int i = 9999; i >= 0; i--) {
+        int i = (10 ^ codeSize) - 1;
+        for (i = i; i >= 0; i--) {
             String result = "" + i;
             for (int c = 0; c < 4; c++) {
                 if (result.length() < 4) {
