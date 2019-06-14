@@ -12,21 +12,21 @@ public class Duel extends Mode {
     public void run(int gameType) {
         codeSize();
         if (gameType == 0) {
-            combinaison = convertir(rdmProposition(codeSize), codeSize);
+            combinaison = convertir(rdmProposition());
             do {
                 System.out.println("Joueur Humain, faites une proposition");
-                propositionHum = convertir(saisir(), codeSize);
+                propositionHum = convertir(saisir());
                 nbEssais++;
-                verifCombi(combinaison, propositionHum, 0, codeSize);
+                verifCombi(combinaison, propositionHum, 0);
                 System.out.println(Arrays.toString(propositionHum) + "indice : " + indice + " Essais: " + nbEssais);
                 if (!alreadyExecuted) {
-                    propositionIa = convertir(propositionInit(codeSize), codeSize);
+                    propositionIa = convertir(propositionInit());
                     alreadyExecuted = true;
-                    verifCombi(combinaison, propositionIa, 0, codeSize);
+                    verifCombi(combinaison, propositionIa, 0);
                     indiceIa = indice;
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                 } else {
-                    verifCombi(combinaison, computerTest(indiceIa, 0, codeSize), 0, codeSize);
+                    verifCombi(combinaison, computerTest(indiceIa, 0), 0);
                     indiceIa = indice;
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                     propositionIaFinale = propositionIa;
@@ -44,21 +44,21 @@ public class Duel extends Mode {
                 System.out.println("--");
             }
         } else {
-            combinaison = convertir(rdmProposition(codeSize), codeSize);
+            combinaison = convertir(rdmProposition());
             do {
                 System.out.println("Joueur Humain, faites une proposition");
-                propositionHum = convertir(saisir(), codeSize);
+                propositionHum = convertir(saisir());
                 nbEssais++;
-                verifCombi(combinaison, propositionHum, 1, codeSize);
+                verifCombi(combinaison, propositionHum, 1);
                 System.out.println(Arrays.toString(propositionHum) + "indice : " + indice + " Essais: " + nbEssais);
                 if (!alreadyExecuted) {
-                    propositionIa = convertir(propositionInit(codeSize), codeSize);
+                    propositionIa = convertir(propositionInit());
                     alreadyExecuted = true;
-                    verifCombi(combinaison, propositionIa, 1, codeSize);
+                    verifCombi(combinaison, propositionIa, 1);
                     indiceIa = indice;
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                 } else {
-                    verifCombi(combinaison, computerTest(indiceIa, 1, codeSize), 1, codeSize);
+                    verifCombi(combinaison, computerTest(indiceIa, 1), 1);
                     indiceIa = indice;
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                     propositionIaFinale = propositionIa;

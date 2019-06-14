@@ -10,13 +10,13 @@ public class Defenseur extends Mode {
         codeSize();
         if (gameType == 0) {
             System.out.println("sasir code:");
-            combinaison = convertir(saisir(), codeSize);
+            combinaison = convertir(saisir());
             nbEssais = 1;
-            propositionIa = convertir(propositionInit(codeSize), codeSize);
+            propositionIa = convertir(propositionInit());
             System.out.println((" essais: " + nbEssais + " proposition ") + Arrays.toString(propositionIa));
-            verifCombi(combinaison, propositionIa, 0, 4);
+            verifCombi(combinaison, propositionIa, 0);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 10) {
-                verifCombi(combinaison, computerTest(indice, 0, codeSize), 0, codeSize);
+                verifCombi(combinaison, computerTest(indice, 0), 0);
                 nbEssais++;
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(propositionIa));
                 if (nbEssais == 10) {
@@ -26,10 +26,10 @@ public class Defenseur extends Mode {
         } else {
             System.out.println("---");
             System.out.println("sasir code:");
-            combinaison = convertir(saisir(), codeSize);
-            propositionIa = convertir(propositionInit(codeSize), codeSize);
+            combinaison = convertir(saisir());
+            propositionIa = convertir(propositionInit());
             nbEssais = 1;
-            verifCombi(combinaison, propositionIa, 1, codeSize);
+            verifCombi(combinaison, propositionIa, 1);
             System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 12) {
                 /*if(!alreadyExecuted){
@@ -38,7 +38,7 @@ public class Defenseur extends Mode {
                     System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
                     verifCombi(combinaison, propositionIa, 1);
                 }*/
-                verifCombi(combinaison, computerTest(indice, 1, codeSize), 1, codeSize);
+                verifCombi(combinaison, computerTest(indice, 1), 1);
                 _LastIndice.add(score(indice));
                 nbEssais++;
                 System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);

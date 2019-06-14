@@ -17,14 +17,10 @@ public abstract class Mode {
     protected int codeSize() {
         System.out.println("Veuillez saisir la taille du code secret par un chiffre compris en 4 et 6: ");
         codeSize = saisir();
-        if (codeSize < 4 && codeSize > 6) {
-            System.out.println("Entrée non valide, veuillez resaisir la taille du code secret, comprise entre 4 et 6 chiffres");
-            codeSize = saisir();
-        }
         return codeSize;
     }
 
-    protected int[] convertir(int nb, int codeSize) {  //méthode servant à convertir les int en int[]
+    protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
         int[] retVal = new int[codeSize];
         int i = codeSize - 1;
         while (nb != 0) {
@@ -51,7 +47,7 @@ public abstract class Mode {
         return result;
     }
 
-    protected String verifCombi(int[] combinaison, int[] proposition, int gameType, int codeSize) {
+    protected String verifCombi(int[] combinaison, int[] proposition, int gameType) {
         //gameType = PlusMoins ou Mastermind
         // blackPeg (B) = bien placé  -- whitePeg (W) = mal placé mais présent
         int B = 0;
@@ -78,7 +74,6 @@ public abstract class Mode {
                 }
             }
         }
-
         if (gameType == 0) { //0 = PlusMoins
             return indice;
         } else {
@@ -92,13 +87,13 @@ public abstract class Mode {
         return x;
     }
 
-    protected int rdmProposition(int codeSize) {
+    protected int rdmProposition() {
         double rdmProposition = Math.random() * ((10 ^ codeSize) - 1);
         return (int) rdmProposition;
 
     }
 
-    protected int propositionInit(int codeSize) {
+    protected int propositionInit() {
         double propositionInit = 4444;
         switch (codeSize) {
             case 4:
@@ -113,7 +108,7 @@ public abstract class Mode {
         return (int) propositionInit;
     }
 
-    protected int[] computerTest(String indiceIn, int gameType, int codeSize) {
+    protected int[] computerTest(String indiceIn, int gameType) {
         if (gameType == 0) {
             int i;
             for (i = 0; i < codeSize; i++) {
@@ -132,14 +127,14 @@ public abstract class Mode {
             }
         } else {
             if (!alreadyExecuted) {
-                _PossibleTokens = generateCombinations(codeSize);
+                _PossibleTokens = generateCombinations();
                 alreadyExecuted = true;
             }
 
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
-                int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)), codeSize);
-                if (score(verifCombi(token, propositionIa, 1, codeSize)) != score(indiceIn)) {
+                int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
+                if (score(verifCombi(token, propositionIa, 1)) != score(indiceIn)) {
                     _PossibleTokens.remove(i);
                 }
             }
@@ -180,19 +175,18 @@ public abstract class Mode {
                 }
             }*/
             Random rand = new Random(); // bound must be positive
-            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))), codeSize);
-            //propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(_PossibleTokens.size()/2-1)));
+            propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
         }
         return propositionIa;
     }
 
-    protected List<String> generateCombinations(int codeSize) {
+    protected List<String> generateCombinations() {
         List<String> tokens = new ArrayList<>();
-        int i = (10 ^ codeSize) - 1;
-        for (i = i; i >= 0; i--) {
+        int e = (int) Math.pow(10, codeSize) -1;
+        for (int i = e; i >= 0; i--) {
             String result = "" + i;
-            for (int c = 0; c < 4; c++) {
-                if (result.length() < 4) {
+            for (int c = 0; c < codeSize; c++) {
+                if (result.length() < codeSize) {
                     result = "0" + result;
                 }
             }
