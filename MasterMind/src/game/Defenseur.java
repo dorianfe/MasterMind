@@ -32,16 +32,13 @@ public class Defenseur extends Mode {
             verifCombi(combinaison, propositionIa, 1);
             System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 12) {
-                /*if(!alreadyExecuted){
-                    propositionIa = convertir(2233);
-                    nbEssais++;
-                    System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
-                    verifCombi(combinaison, propositionIa, 1);
-                }*/
                 verifCombi(combinaison, computerTest(indice, 1), 1);
                 _LastIndice.add(score(indice));
                 nbEssais++;
                 System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
+                if (nbEssais == 12) {
+                    System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));
+                }
 
             }
         }
