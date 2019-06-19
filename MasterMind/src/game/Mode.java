@@ -3,7 +3,7 @@ package game;
 import java.util.*;
 
 public abstract class Mode {
-    private Scanner sc = new Scanner(System.in);
+
     protected int[] combinaison;
     protected int[] propositionIa;
     protected List<String> _PossibleTokens; //combinaisons possibles
@@ -14,8 +14,12 @@ public abstract class Mode {
     protected int codeSize;
 
     protected int codeSize() {
-        System.out.println("Veuillez saisir la taille du code secret par un chiffre compris en 4 et 6: ");
-        codeSize = saisir();
+        do {
+
+            System.out.println("Veuillez saisir la taille du code secret, 4 ou 5 chiffres: ");
+            codeSize = saisir();
+
+        } while (codeSize != 4 && codeSize != 5);
         return codeSize;
     }
 
@@ -49,7 +53,7 @@ public abstract class Mode {
     /**
      * @param combinaison le code secret à comparer
      * @param proposition avec la proposition
-     * @param gameType le type de jeu Plus moins ou Mastermind
+     * @param gameType    le type de jeu Plus moins ou Mastermind
      * @return
      */
     protected String verifCombi(int[] combinaison, int[] proposition, int gameType) {
@@ -170,7 +174,13 @@ public abstract class Mode {
         return propositionIa;
     }
 
-    protected int saisir() { // try catch
+    public int saisir() {
+        Scanner sc = new Scanner(System.in);
+
+        while (!sc.hasNextInt()){
+            System.out.println("Veuillez entrer un nombre.");
+            sc.nextLine();
+        }
         int x = sc.nextInt();
         return x;
     }
