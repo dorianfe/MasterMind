@@ -8,7 +8,6 @@ public abstract class Mode {
     protected int[] propositionIa;
     protected List<String> _PossibleTokens; //combinaisons possibles
     protected String[] _IndicesPossibles = {"B0W0", "B0W1", "B0W2", "B0W3", "B0W4", "B1W0", "B1W1", "B1W2", "B1W3", "B2W0", "B2W1", "B2W2", "B3W0", "B3W1", "B4W0"};
-    protected List<Integer> _LastIndice = new ArrayList<>();
     protected String indice;
     protected boolean alreadyExecuted;
     protected int nbEssais;
@@ -47,29 +46,52 @@ public abstract class Mode {
         return result;
     }
 
+    /**
+     * @param combinaison le code secret à comparer
+     * @param proposition avec la proposition
+     * @param gameType le type de jeu Plus moins ou Mastermind
+     * @return
+     */
     protected String verifCombi(int[] combinaison, int[] proposition, int gameType) {
-        //gameType = PlusMoins ou Mastermind
-        // blackPeg (B) = bien placé  -- whitePeg (W) = mal placé mais présent
         int B = 0;
         int W = 0;
-        indice = "";
-        int[] indiceB = new int[codeSize];
-        for (int i = 0; i < combinaison.length; i++) {
-            if (combinaison[i] < proposition[i]) {
-                indice = indice + "-";
-            } else if (combinaison[i] == proposition[i]) {
-                indice = indice + "=";
-                B++;
-                indiceB[i] = i;
-            } else {
-                indice = indice + "+";
+        if (gameType == 0) {
+            indice = "";
+            //cette boucle permet de comparer la combinaison à la proposition dans le cas du jeu Plus moins
+            //et de retourner l'indice pour chaque chiffre +/-/=
+            for (int i = 0; i < combinaison.length; i++) {
+                if (combinaison[i] < proposition[i]) {
+                    indice = indice + "-";
+                } else if (combinaison[i] == proposition[i]) {
+                    indice = indice + "=";
+                } else {
+                    indice = indice + "+";
+                }
             }
-        }
-        for (int i = 0; i < combinaison.length; i++) {
-            if (combinaison[i] != proposition[i]) {
-                for (int j = 0; j < proposition.length; j++) {
-                    if (i != j && j != indiceB[j] && combinaison[i] == proposition[j]) {
-                        W++;
+        } else {
+            boolean[] marque = new boolean[codeSize];
+            //boucle permetttant de trouver les bien placés (B). Le boolean "marque" permet de les repérer
+            // pour ne pas les compter 2 fois.
+            for (int i = 0; i < combinaison.length; i++) {
+                if (combinaison[i] == proposition[i]) {
+                    B++;
+                    marque[i] = true;
+                } else {
+                    marque[i] = false;
+                }
+            }
+            // la deuxième boucle suivante permet de trouver les mal placés (W)
+            for (int i = 0; i < combinaison.length; i++) {
+                if (combinaison[i] != proposition[i]) {
+                    int j = 0;
+                    boolean trouveMalPlace = false;
+                    while ((j < codeSize) && !trouveMalPlace) {
+                        if (!marque[j] && (combinaison[i] == proposition[j])) {
+                            W++;
+                            marque[j] = true;
+                            trouveMalPlace = true;
+                        }
+                        j++;
                     }
                 }
             }
@@ -82,32 +104,11 @@ public abstract class Mode {
         return indice;
     }
 
-    protected int saisir() { // try catch
-        int x = sc.nextInt();
-        return x;
-    }
-
-    protected int rdmProposition() {
-        double rdmProposition = Math.random() * ((10 ^ codeSize) - 1);
-        return (int) rdmProposition;
-
-    }
-
-    protected int propositionInit() {
-        double propositionInit = 4444;
-        switch (codeSize) {
-            case 4:
-                propositionInit = 4444;
-                break;
-            case 5:
-                propositionInit = 44444;
-                break;
-            case 6:
-                propositionInit = 444444;
-        }
-        return (int) propositionInit;
-    }
-
+    /**
+     * @param indiceIn l'indice retourné par verifCombi suite à la dernière proposition faite par la machine.
+     * @param gameType définit le jeu: 0 Plus ou moins, 1 Mastermind
+     * @return la nouvelle proposition de code secret trouvée par la machine
+     */
     protected int[] computerTest(String indiceIn, int gameType) {
         if (gameType == 0) {
             int i;
@@ -130,7 +131,6 @@ public abstract class Mode {
                 _PossibleTokens = generateCombinations();
                 alreadyExecuted = true;
             }
-
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
@@ -160,29 +160,60 @@ public abstract class Mode {
                     }
                 }
             }
-            /*if (nbEssais <= 4 && nbEssais != 1) {
-                int o = _LastIndice.indexOf(0);
-                if (o == -1) {
-                    int j;
-                    for (j = 0; j < _PossibleTokens.size(); j++) {
-                        int[] token = convertir(Integer.parseInt(_PossibleTokens.get(j)));
-                        if (score(verifCombi(token, propositionIa, 1)) == score(indiceIn)) {
-                            propositionIa = token;
-
-                            return propositionIa;
-                        }
-                    }
-                }
-            }*/
+            if (_PossibleTokens.size() < 1) {
+                propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(0)));
+            }
             Random rand = new Random(); // bound must be positive
             propositionIa = convertir(Integer.parseInt(_PossibleTokens.get(rand.nextInt(_PossibleTokens.size()))));
+
         }
         return propositionIa;
     }
 
+    protected int saisir() { // try catch
+        int x = sc.nextInt();
+        return x;
+    }
+
+    protected int rdmProposition() {
+        double rdmProposition = Math.random() * ((10 ^ codeSize) - 1);
+        return (int) rdmProposition;
+
+    }
+
+    protected int propositionInitMaster() {
+        double propositionInit = 1122;
+        switch (codeSize) {
+            case 4:
+                propositionInit = 1122;
+                break;
+            case 5:
+                propositionInit = 11223;
+                break;
+            case 6:
+                propositionInit = 112233;
+        }
+        return (int) propositionInit;
+    }
+
+    protected int propositionInit() {
+        double propositionInit = 4444;
+        switch (codeSize) {
+            case 4:
+                propositionInit = 4444;
+                break;
+            case 5:
+                propositionInit = 44444;
+                break;
+            case 6:
+                propositionInit = 444444;
+        }
+        return (int) propositionInit;
+    }
+
     protected List<String> generateCombinations() {
         List<String> tokens = new ArrayList<>();
-        int e = (int) Math.pow(10, codeSize) -1;
+        int e = (int) Math.pow(10, codeSize) - 1;
         for (int i = e; i >= 0; i--) {
             String result = "" + i;
             for (int c = 0; c < codeSize; c++) {
@@ -193,17 +224,6 @@ public abstract class Mode {
             tokens.add(result);
         }
         return tokens;
-    }
-
-    private void removeAll(List<String> list, String element) {
-        List<String> remainingElements = new ArrayList<>();
-        for (String number : list) {
-            if (!Objects.equals(number, element)) {
-                remainingElements.add(number);
-            }
-        }
-        list.clear();
-        list.addAll(remainingElements);
     }
 
     protected int score(String indiceIn) {

@@ -52,7 +52,7 @@ public class Duel extends Mode {
                 verifCombi(combinaison, propositionHum, 1);
                 System.out.println(Arrays.toString(propositionHum) + "indice : " + indice + " Essais: " + nbEssais);
                 if (!alreadyExecuted) {
-                    propositionIa = convertir(propositionInit());
+                    propositionIa = convertir(propositionInitMaster());
                     alreadyExecuted = true;
                     verifCombi(combinaison, propositionIa, 1);
                     indiceIa = indice;

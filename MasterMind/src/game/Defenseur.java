@@ -27,13 +27,12 @@ public class Defenseur extends Mode {
             System.out.println("---");
             System.out.println("sasir code:");
             combinaison = convertir(saisir());
-            propositionIa = convertir(propositionInit());
+            propositionIa = convertir(propositionInitMaster());
             nbEssais = 1;
             verifCombi(combinaison, propositionIa, 1);
             System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
             while (!Arrays.equals(combinaison, propositionIa) && nbEssais <= 12) {
                 verifCombi(combinaison, computerTest(indice, 1), 1);
-                _LastIndice.add(score(indice));
                 nbEssais++;
                 System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
                 if (nbEssais == 12) {
