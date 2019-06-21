@@ -1,7 +1,7 @@
 /*
-package game.plusmoins;
+package main.java.game.plusmoins;
 
-import game.Game;
+import main.java.game.Game;
 
 public abstract class PlusMoins extends Game {
 

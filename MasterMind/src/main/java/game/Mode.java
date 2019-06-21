@@ -1,5 +1,8 @@
-package game;
+package main.java.game;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 public abstract class Mode {
@@ -11,7 +14,24 @@ public abstract class Mode {
     protected String indice;
     protected boolean alreadyExecuted;
     protected int nbEssais;
+    protected int nbEssaisMax;
     protected int codeSize;
+    protected int modDev;
+
+    public Mode() {
+        Properties prop = new Properties();
+        InputStream input = null;
+        OutputStream output = null;
+        try {
+            input = new FileInputStream("config.properties");
+            prop.load(input);
+            codeSize = Integer.valueOf(prop.getProperty("code.size"));
+            nbEssaisMax = Integer.valueOf(prop.getProperty("nombre.essais"));
+            modDev = Integer.valueOf(prop.getProperty("mod.dev"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     protected int codeSize() {
         do {
@@ -177,7 +197,7 @@ public abstract class Mode {
     public int saisir() {
         Scanner sc = new Scanner(System.in);
 
-        while (!sc.hasNextInt()){
+        while (!sc.hasNextInt()) {
             System.out.println("Veuillez entrer un nombre.");
             sc.nextLine();
         }

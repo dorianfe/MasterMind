@@ -1,4 +1,4 @@
-package game;
+package main.java.game;
 
 import java.util.Arrays;
 
@@ -8,9 +8,12 @@ public class Duel extends Mode {
     private int[] propositionIaFinale;
     private String indiceIa;
 
+    public Duel() {
+        super();
+    }
+
     @Override
     public void run(int gameType) {
-        codeSize();
         if (gameType == 0) {
             combinaison = convertir(rdmProposition());
             do {
@@ -24,10 +27,12 @@ public class Duel extends Mode {
                     alreadyExecuted = true;
                     verifCombi(combinaison, propositionIa, 0);
                     indiceIa = indice;
+                    if(modDev == 1)
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                 } else {
                     verifCombi(combinaison, computerTest(indiceIa, 0), 0);
                     indiceIa = indice;
+                    if(modDev == 1)
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                     propositionIaFinale = propositionIa;
                 }
@@ -56,14 +61,16 @@ public class Duel extends Mode {
                     alreadyExecuted = true;
                     verifCombi(combinaison, propositionIa, 1);
                     indiceIa = indice;
+                    if(modDev == 1)
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                 } else {
                     verifCombi(combinaison, computerTest(indiceIa, 1), 1);
                     indiceIa = indice;
+                    if(modDev == 1)
                     System.out.println(Arrays.toString(propositionIa) + "indiceIa : " + indiceIa + " Essais: " + nbEssais);
                     propositionIaFinale = propositionIa;
                 }
-            } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum) && nbEssais <= 12);
+            } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum) && nbEssais <= nbEssaisMax);
             if (convertir(propositionIaFinale) == convertir(propositionHum)) {
                 System.out.println("ex-aequo!");
             } else if (convertir(combinaison) == convertir(propositionIaFinale)) {

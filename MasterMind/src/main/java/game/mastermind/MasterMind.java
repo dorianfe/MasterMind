@@ -1,7 +1,7 @@
 /*
-package game.mastermind;
+package main.java.game.mastermind;
 
-import game.Game;
+import main.java.game.Game;
 
 public abstract class MasterMind extends Game {
 

@@ -1,6 +1,6 @@
 /*
 
-package game;
+package main.java.game;
 
 import java.util.Arrays;
 

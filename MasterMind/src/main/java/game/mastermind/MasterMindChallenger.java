@@ -1,5 +1,5 @@
 /*
-package game.mastermind;
+package main.java.game.mastermind;
 
 import java.util.Scanner;
 

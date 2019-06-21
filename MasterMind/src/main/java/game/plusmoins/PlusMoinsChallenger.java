@@ -1,5 +1,5 @@
 /*
-package game.plusmoins;
+package main.java.game.plusmoins;
 
 import java.util.Scanner;
 
