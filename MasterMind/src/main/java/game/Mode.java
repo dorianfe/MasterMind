@@ -155,6 +155,9 @@ public abstract class Mode {
                 _PossibleTokens = generateCombinations();
                 alreadyExecuted = true;
             }
+            //boucle servant à retirer toutes les combinaisons de chiffres qui ne donneraient pas le même indice
+            // exemple: si propositionIa/code secret, donne indice B1W2, alors toutes les combinaisons (_PossibleTokens)
+            //comparées à cette même proposition donnant un indice différent sont alors éliminées de la liste _PossibleTokens
             int i;
             for (i = 0; i < _PossibleTokens.size(); i++) {
                 int[] token = convertir(Integer.parseInt(_PossibleTokens.get(i)));
@@ -162,6 +165,7 @@ public abstract class Mode {
                     _PossibleTokens.remove(i);
                 }
             }
+            //il s'agit ici d'enlever les combinaisons de chiffres inexistants dans le code secret
             int c;
             int d;
             if (indiceIn.equals("B0W0")) {
@@ -173,7 +177,9 @@ public abstract class Mode {
                         }
                     }
                 }
-            } else if (score(indiceIn) >= 1 && score(indiceIn) <= 4) { //si mal placés uniquement
+            //cette boucle retire les chiffres mal placés des possibles, seulement lorsqu'ils sont placés de même manière,
+                //et s'il n'y a aucun bien placé.
+            } else if (score(indiceIn) >= 1 && score(indiceIn) <= 4) {
                 for (c = 0; c < codeSize; c++) {
                     String e = Integer.toString(propositionIa[c]);
                     for (d = 0; d < _PossibleTokens.size(); d++) {
