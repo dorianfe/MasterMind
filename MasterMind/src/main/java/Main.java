@@ -13,7 +13,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         while (!sc.hasNextInt()) {
-            System.out.println("Veuillez entrer un nombre.");
+            System.out.println("Veuillez entrer un entier.");
             sc.nextLine();
         }
         int x = sc.nextInt();
@@ -25,8 +25,16 @@ public class Main {
 
         System.out.println("Bienvenu, veuillez choisir un jeu \n 1 - Plus Moins \n 2 - Mastermind");
         int jeu = saisir() - 1;
+        while (jeu != 0 && jeu != 1){
+            System.out.println("veuillez choisir un jeu \n 1 - Plus Moins \n 2 - Mastermind");
+            jeu = saisir() - 1;
+        }
         System.out.println("Choisissez maintenant un mode de jeu: \n 1 - Challenger (à vous de trouver le code secret) \n 2 - Denfenseur (vous choisissez le code secret, la machine doit le trouver en un nombre limité de coups \n 3 - Duel (vous jouez contre la machine, le premier à trouver le code secret gagne");
         int modeJeu = saisir();
+        while (modeJeu != 1 && modeJeu !=2 && modeJeu != 3){
+            System.out.println("Choisissez un chiffre de 1 à 3, correspondant au mode souhaité.");
+            modeJeu = saisir();
+        }
         if(jeu == 0){
             switch (modeJeu){
                 case 1:
