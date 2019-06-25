@@ -2,6 +2,8 @@ package main.java.game;
 
 import java.util.Arrays;
 
+import static main.java.Main.saisir;
+
 public class Challenger extends Mode {
 
     private int[] proposition;

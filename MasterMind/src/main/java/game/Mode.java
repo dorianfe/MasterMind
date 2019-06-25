@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.*;
 
+import static main.java.Main.saisir;
+
 public abstract class Mode {
 
     protected int[] combinaison;
@@ -200,16 +202,7 @@ public abstract class Mode {
         return propositionIa;
     }
 
-    public int saisir() {
-        Scanner sc = new Scanner(System.in);
 
-        while (!sc.hasNextInt()) {
-            System.out.println("Veuillez entrer un nombre.");
-            sc.nextLine();
-        }
-        int x = sc.nextInt();
-        return x;
-    }
 
     protected int rdmProposition() {
         double rdmProposition = Math.random() * ((10 ^ codeSize) - 1);
