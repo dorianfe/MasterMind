@@ -179,7 +179,7 @@ public abstract class Mode {
                         }
                     }
                 }
-            //cette boucle retire les chiffres mal placés des possibles, seulement lorsqu'ils sont placés de même manière,
+                //cette boucle retire les chiffres mal placés des possibles, seulement lorsqu'ils sont placés de même manière,
                 //et s'il n'y a aucun bien placé.
             } else if (score(indiceIn) >= 1 && score(indiceIn) <= 4) {
                 for (c = 0; c < codeSize; c++) {
@@ -201,7 +201,6 @@ public abstract class Mode {
         }
         return propositionIa;
     }
-
 
 
     protected int rdmProposition() {
@@ -234,8 +233,6 @@ public abstract class Mode {
             case 5:
                 propositionInit = 44444;
                 break;
-            case 6:
-                propositionInit = 444444;
         }
         return (int) propositionInit;
     }
