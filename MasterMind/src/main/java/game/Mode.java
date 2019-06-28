@@ -1,5 +1,9 @@
 package main.java.game;
 
+import main.java.Main;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,7 +24,13 @@ public abstract class Mode {
     protected int codeSize;
     protected int modDev;
 
+    private static Logger logger = Logger.getLogger(Main.class);
+
+
     public Mode() {
+        DOMConfigurator.configure("log4j2.xml");
+        logger.info("Bonjour bienvenu.");
+
         Properties prop = new Properties();
         InputStream input = null;
         OutputStream output = null;
@@ -33,6 +43,10 @@ public abstract class Mode {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    protected void  message(String message) {
+        logger.info(message);
     }
 
     protected int codeSize() {

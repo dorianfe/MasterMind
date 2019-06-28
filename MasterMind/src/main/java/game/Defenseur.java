@@ -12,6 +12,7 @@ public class Defenseur extends Mode {
 
     @Override
     public void run(int gameType) {
+        message("démarrage du mode defenseur");
         if (gameType == 0) {
             System.out.println("sasir code:");
             combinaison = convertir(saisir());

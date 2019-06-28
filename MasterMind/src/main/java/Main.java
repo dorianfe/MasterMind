@@ -4,10 +4,16 @@ import main.java.game.Challenger;
 import main.java.game.Defenseur;
 import main.java.game.Duel;
 import main.java.game.Mode;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import java.util.Scanner;
 
+
 public class Main {
+
+
+
 
     public static int saisir() {
         Scanner sc = new Scanner(System.in);
