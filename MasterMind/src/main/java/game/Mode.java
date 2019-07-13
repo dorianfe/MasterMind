@@ -49,15 +49,6 @@ public abstract class Mode {
         logger.info(message);
     }
 
-    protected int codeSize() {
-        do {
-
-            System.out.println("Veuillez saisir la taille du code secret, 4 ou 5 chiffres: ");
-            codeSize = saisir();
-
-        } while (codeSize != 4 && codeSize != 5);
-        return codeSize;
-    }
 
     protected int[] convertir(int nb) {  //méthode servant à convertir les int en int[]
         int[] retVal = new int[codeSize];
@@ -232,8 +223,6 @@ public abstract class Mode {
             case 5:
                 propositionInit = 11223;
                 break;
-            case 6:
-                propositionInit = 112233;
         }
         return (int) propositionInit;
     }
