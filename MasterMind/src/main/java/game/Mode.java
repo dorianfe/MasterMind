@@ -28,14 +28,14 @@ public abstract class Mode {
 
 
     public Mode() {
-        DOMConfigurator.configure("log4j2.xml");
+        DOMConfigurator.configure("/home/dorian/IdeaProjects/MasterMind/log4j2.xml");
         logger.info("Bonjour bienvenu.");
 
         Properties prop = new Properties();
         InputStream input = null;
         OutputStream output = null;
         try {
-            input = new FileInputStream("config.properties");
+            input = new FileInputStream("/home/dorian/IdeaProjects/MasterMind/config.properties");
             prop.load(input);
             codeSize = Integer.valueOf(prop.getProperty("code.size"));
             nbEssaisMax = Integer.valueOf(prop.getProperty("nombre.essais"));
@@ -45,7 +45,7 @@ public abstract class Mode {
         }
     }
 
-    protected void  message(String message) {
+    protected void message(String message) {
         logger.info(message);
     }
 
