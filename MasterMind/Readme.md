@@ -34,6 +34,8 @@ Lancer le programme :
 
 4 - Entrer la commande : “java -jar le_nom_du_jar.jar” et lancer
 
+Il est possible de changer le nombre d'essais maximum, la taille du code secret et de passer en mode développeur dans le fichier de config (config.properties)
+
 Built (construit) avec Intellij IDEA
 
 Auteur
