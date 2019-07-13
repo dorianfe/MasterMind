@@ -24,10 +24,14 @@ Prérequis:
 
 - Java 1.8
 
-- Lancer le programme :
+Lancer le programme :
+
 1 - Ouvrir un terminal/console (invite de commande)
-2 - Copier le chemin vers le fichier .jar 
+
+2 - Copier le chemin vers le fichier .jar (MasterMind/out/artifacts/MasterMind_jar/)
+
 3 - Ecrire dans l'invite de commande : “cd ” suivie du chemin ou se trouve le .jar
+
 4 - Entrer la commande : “java -jar le_nom_du_jar.jar” et lancer
 
 Built (construit) avec Intellij IDEA
