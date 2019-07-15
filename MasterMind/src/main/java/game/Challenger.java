@@ -25,7 +25,7 @@ public class Challenger extends Mode {
                 verifCombi(combinaison, proposition, 0);
                 //System.out.println(Arrays.toString(proposition) + "indice : " + indice + " essais: " + nbEssais);
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(proposition));
-                if (nbEssais == nbEssaisMax){
+                if (nbEssais > nbEssaisMax){
                     System.out.println("Perdu, nombre d'essais max atteint!");
                     break;
                 }
@@ -42,7 +42,7 @@ public class Challenger extends Mode {
                 nbEssais++;
                 verifCombi(combinaison, proposition,1);
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(proposition));
-                if (nbEssais == nbEssaisMax){
+                if (nbEssais > nbEssaisMax){
                     System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));
                     break;
                 }

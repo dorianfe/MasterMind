@@ -24,7 +24,7 @@ public class Defenseur extends Mode {
                 verifCombi(combinaison, computerTest(indice, 0), 0);
                 nbEssais++;
                 System.out.println(("indice: " + indice + " essais: " + nbEssais + " proposition ") + Arrays.toString(propositionIa));
-                if (nbEssais == nbEssaisMax) {
+                if (nbEssais > nbEssaisMax) {
                     System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));
                 }
             }
@@ -40,7 +40,7 @@ public class Defenseur extends Mode {
                 verifCombi(combinaison, computerTest(indice, 1), 1);
                 nbEssais++;
                 System.out.println(Arrays.toString(propositionIa) + indice + " essai :" + nbEssais);
-                if (nbEssais == nbEssaisMax) {
+                if (nbEssais > nbEssaisMax) {
                     System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));
                 }
                 if (Arrays.equals(combinaison, propositionIa)) {

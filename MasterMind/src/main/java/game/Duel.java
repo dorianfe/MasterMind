@@ -74,7 +74,7 @@ public class Duel extends Mode {
                     propositionIaFinale = propositionIa;
                 }
             } while (!Arrays.equals(combinaison, propositionIaFinale) && !Arrays.equals(combinaison, propositionHum) && nbEssais <= nbEssaisMax);
-            if (nbEssais == nbEssaisMax) {
+            if (nbEssais > nbEssaisMax) {
                 System.out.println("Perdu, nombre d'essais max atteint!" + " La réponse était: " + Arrays.toString(combinaison));
             }
             if (convertir(propositionIaFinale) == convertir(propositionHum)) {
